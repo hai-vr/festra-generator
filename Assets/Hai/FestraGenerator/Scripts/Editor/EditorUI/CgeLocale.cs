@@ -4,9 +4,9 @@
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using UnityEngine;
+using Hai.ComboGesture.Scripts.Editor.EditorUI;
 
-namespace Hai.ComboGesture.Scripts.Editor.EditorUI
+namespace Hai.FestraGenerator.Scripts.Editor.EditorUI
 {
     public class CgeLocale
     {

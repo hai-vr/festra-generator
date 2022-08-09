@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Hai.ComboGesture.Scripts.Components;
+using Hai.FestraGenerator.Scripts.Components;
 using UnityEditor;
 using UnityEngine;
 using VRC.SDK3.Avatars.ScriptableObjects;

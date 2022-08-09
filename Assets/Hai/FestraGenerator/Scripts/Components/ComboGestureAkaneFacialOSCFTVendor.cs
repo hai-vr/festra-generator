@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Hai.ComboGesture.Scripts.Components
+namespace Hai.FestraGenerator.Scripts.Components
 {
     public class ComboGestureAkaneFacialOSCFTVendor : ComboGestureFTVendor
     {

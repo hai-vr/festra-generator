@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using static Hai.ComboGesture.Scripts.Components.CgeSRAnipalConvention;
+using static Hai.FestraGenerator.Scripts.Components.CgeSRAnipalConvention;
 
-namespace Hai.ComboGesture.Scripts.Components
+namespace Hai.FestraGenerator.Scripts.Components
 {
     public class ComboGestureVRCFaceTrackingFTVendor : ComboGestureFTVendor
     {

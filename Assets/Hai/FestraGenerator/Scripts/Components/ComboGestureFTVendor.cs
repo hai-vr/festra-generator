@@ -5,7 +5,7 @@ using System.Reflection;
 using UnityEngine;
 using VRC.SDK3.Avatars.ScriptableObjects;
 
-namespace Hai.ComboGesture.Scripts.Components
+namespace Hai.FestraGenerator.Scripts.Components
 {
     public abstract class ComboGestureFTVendor : MonoBehaviour
     {

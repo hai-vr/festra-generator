@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Hai.ComboGesture.Scripts.Components
+namespace Hai.FestraGenerator.Scripts.Components
 {
     public class ComboGestureFaceTracking : MonoBehaviour
     {

@@ -1,5 +1,5 @@
 ﻿using System;
-using Hai.ComboGesture.Scripts.Components;
+using Hai.FestraGenerator.Scripts.Components;
 using UnityEditor;
 using UnityEngine;
 

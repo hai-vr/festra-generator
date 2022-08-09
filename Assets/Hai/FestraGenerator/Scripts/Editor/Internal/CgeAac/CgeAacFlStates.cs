@@ -6,7 +6,7 @@ using UnityEngine;
 using VRC.SDK3.Avatars.Components;
 using VRC.SDKBase;
 
-namespace Hai.ComboGesture.Scripts.Editor.Internal.CgeAac
+namespace Hai.FestraGenerator.Scripts.Editor.Internal.CgeAac
 {
     internal class CgeAacBackingAnimator
     {

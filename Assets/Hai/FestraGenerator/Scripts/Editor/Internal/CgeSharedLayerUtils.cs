@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Hai.ComboGesture.Scripts.Components;
 using UnityEditor.Animations;
 using UnityEngine;
 

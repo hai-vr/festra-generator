@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor.Animations;
-using static Hai.ComboGesture.Scripts.Editor.Internal.CgeAac.CgeAacFlConditionSimple;
+using static Hai.FestraGenerator.Scripts.Editor.Internal.CgeAac.CgeAacFlConditionSimple;
 using static UnityEditor.Animations.AnimatorConditionMode;
 
-namespace Hai.ComboGesture.Scripts.Editor.Internal.CgeAac
+namespace Hai.FestraGenerator.Scripts.Editor.Internal.CgeAac
 {
     class CgeAacFlConditionSimple : ICgeAacFlCondition
     {

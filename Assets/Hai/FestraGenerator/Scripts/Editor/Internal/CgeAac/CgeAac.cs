@@ -8,7 +8,7 @@ using VRC.SDK3.Avatars.Components;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
-namespace Hai.ComboGesture.Scripts.Editor.Internal.CgeAac
+namespace Hai.FestraGenerator.Scripts.Editor.Internal.CgeAac
 {
     public static class CgeAacV0
     {

@@ -1,4 +1,4 @@
-﻿using Hai.ComboGesture.Scripts.Components;
+﻿using Hai.FestraGenerator.Scripts.Components;
 using UnityEditor;
 
 namespace Hai.ComboGesture.Scripts.Editor.EditorUI

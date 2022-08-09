@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using VRC.SDK3.Avatars.Components;
 
-namespace Hai.ComboGesture.Scripts.Components
+namespace Hai.FestraGenerator.Scripts.Components
 {
     public class ComboGestureCompiler : MonoBehaviour
     {

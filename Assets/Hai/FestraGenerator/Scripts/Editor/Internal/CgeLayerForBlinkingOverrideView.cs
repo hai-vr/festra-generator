@@ -1,4 +1,4 @@
-﻿using Hai.ComboGesture.Scripts.Editor.Internal.CgeAac;
+﻿using Hai.FestraGenerator.Scripts.Editor.Internal.CgeAac;
 using UnityEditor;
 using UnityEditor.Animations;
 using UnityEngine;
