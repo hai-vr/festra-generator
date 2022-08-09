@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Hai.ComboGesture.Scripts.Editor.Internal.CgeAac;
+﻿using Hai.ComboGesture.Scripts.Editor.Internal.CgeAac;
 using UnityEditor;
 using UnityEditor.Animations;
 using UnityEngine;
@@ -16,16 +14,14 @@ namespace Hai.ComboGesture.Scripts.Editor.Internal
         private readonly AvatarMask _logicalAvatarMask;
         private readonly AnimatorController _animatorController;
         private readonly CgeAssetContainer _assetContainer;
-        private readonly List<CgeManifestBinding> _manifestBindings;
         private readonly bool _writeDefaultsForLogicalStates;
 
-        public CgeLayerForBlinkingOverrideView(float analogBlinkingUpperThreshold, AvatarMask logicalAvatarMask, AnimatorController animatorController, CgeAssetContainer assetContainer, List<CgeManifestBinding> manifestBindings, bool writeDefaults)
+        public CgeLayerForBlinkingOverrideView(float analogBlinkingUpperThreshold, AvatarMask logicalAvatarMask, AnimatorController animatorController, CgeAssetContainer assetContainer, bool writeDefaults)
         {
             _analogBlinkingUpperThreshold = analogBlinkingUpperThreshold;
             _logicalAvatarMask = logicalAvatarMask;
             _animatorController = animatorController;
             _assetContainer = assetContainer;
-            _manifestBindings = manifestBindings;
             _writeDefaultsForLogicalStates = writeDefaults;
         }
 
@@ -33,11 +29,6 @@ namespace Hai.ComboGesture.Scripts.Editor.Internal
         {
             EditorUtility.DisplayProgressBar("ComboGestureExpressions", "Clearing eyes blinking override layer", 0f);
             var layer = ReinitializeLayer();
-
-            if (!_manifestBindings.Any(manifest => manifest.Manifest.RequiresBlinking()))
-            {
-                return;
-            }
 
             var enableBlinking = CreateBlinkingState(layer, VRC_AnimatorTrackingControl.TrackingType.Tracking);
             var disableBlinking = CreateBlinkingState(layer, VRC_AnimatorTrackingControl.TrackingType.Animation);

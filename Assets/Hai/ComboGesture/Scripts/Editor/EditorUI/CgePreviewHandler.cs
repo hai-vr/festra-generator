@@ -210,8 +210,8 @@ namespace Hai.ComboGesture.Scripts.Editor.EditorUI
                 return _clipToRender[clip];
             }
 
-            var width = isBig ? CgeActivityEditorCombiner.CombinerPreviewCenterWidth : CgeActivityEditorCombiner.CombinerPreviewWidth;
-            var height = isBig ? CgeActivityEditorCombiner.CombinerPreviewCenterHeight : CgeActivityEditorCombiner.CombinerPreviewHeight;
+            var width = 200;
+            var height = 200;
             var render = new EeRenderResult
             {
                 Normal = new Texture2D(width, height, TextureFormat.RGB24, true),
