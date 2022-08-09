@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace Hai.FestraGenerator.Scripts.Components
 {
-    public class ComboGestureFaceTracking : MonoBehaviour
+    public class FestraAvatar : MonoBehaviour
     {
         public SkinnedMeshRenderer[] automaticAnimations;
-        // public CgeSensorLipElement lipElement;
-        // public CgeSensorEyeElement eyeElement;
+        // public FestraSensorLipElement lipElement;
+        // public FestraSensorEyeElement eyeElement;
         public AnimationClip eyeLeftUp;
         public AnimationClip eyeLeftDown;
         public AnimationClip eyeLeftLeft;
@@ -19,10 +19,10 @@ namespace Hai.FestraGenerator.Scripts.Components
         public AnimationClip eyeRightRight;
         public AnimationClip eyeRightCenter;
         
-        public ComboGestureFTVendor vendor;
+        public FestraFTVendor vendor;
     }
 
-    public enum CgeVendorGroup
+    public enum FestraVendorGroup
     {
         None,
         All,
@@ -30,7 +30,7 @@ namespace Hai.FestraGenerator.Scripts.Components
     }
 
     [Serializable]
-    public struct CgeSensorLipElement
+    public struct FestraSensorLipElement
     {
         public Motion None; // GearBell 0:0 RESTING_FACE_EXAMPLE
         //public Motion None; // GearBell 8:0 TONGUE_REST_COMPARISON_EXAMPLE
@@ -76,7 +76,7 @@ namespace Hai.FestraGenerator.Scripts.Components
     }
 
     [Serializable]
-    public struct CgeSensorEyeElement
+    public struct FestraSensorEyeElement
     {
         public Motion None;
         public Motion Eye_Left_Blink;

@@ -5,206 +5,206 @@ using UnityEditor;
 using UnityEngine;
 using VRC.SDK3.Avatars.ScriptableObjects;
 
-namespace Hai.ComboGesture.Scripts.Editor.EditorUI
+namespace Hai.FestraGenerator.Scripts.Editor.EditorUI
 {
-    [CustomEditor(typeof(ComboGestureVRCFaceTrackingFTVendor))]
-    public class ComboGestureVRCFaceTrackingFTVendorEditor : UnityEditor.Editor
+    [CustomEditor(typeof(FestraVRCFaceTrackingFTVendor))]
+    public class FestraVRCFaceTrackingFTVendorEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()
         {
-            EditorGUILayout.PropertyField(serializedObject.FindProperty(nameof(ComboGestureFTVendor.expressionParameters)));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty(nameof(FestraFTVendor.expressionParameters)));
             EditorGUILayout.LabelField("VRCFaceTracking vendor", EditorStyles.boldLabel);
             EditorGUILayout.TextField("https://github.com/benaclejames/VRCFaceTracking/wiki/Parameters");
             EditorGUILayout.HelpBox(@"This is NOT an endorsement.
 
 It is INHERENTLY DANGEROUS to run code that someone else has written. It is your responsibility to exercise caution when running projects.", MessageType.Warning);
-            EditorGUILayout.PropertyField(serializedObject.FindProperty(nameof(ComboGestureFTVendor.debugShowInfluences)));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty(nameof(FestraFTVendor.debugShowInfluences)));
             
-            DisplayGroupFor(nameof(ComboGestureVRCFaceTrackingFTVendor.GROUP_Eye_Tracking_Parameters),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.EyesX),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.EyesY),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.LeftEyeLid),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.RightEyeLid),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.CombinedEyeLid),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.EyesWiden),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.EyesDilation),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.EyesSqueeze),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.LeftEyeX),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.LeftEyeY),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.RightEyeX),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.RightEyeY),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.LeftEyeWiden),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.RightEyeWiden),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.LeftEyeSqueeze),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.RightEyeSqueeze),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.LeftEyeLidExpanded),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.RightEyeLidExpanded),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.CombinedEyeLidExpanded),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.LeftEyeLidExpandedSqueeze),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.RightEyeLidExpandedSqueeze),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.CombinedEyeLidExpandedSqueeze));
+            DisplayGroupFor(nameof(FestraVRCFaceTrackingFTVendor.GROUP_Eye_Tracking_Parameters),
+                nameof(FestraVRCFaceTrackingFTVendor.EyesX),
+                nameof(FestraVRCFaceTrackingFTVendor.EyesY),
+                nameof(FestraVRCFaceTrackingFTVendor.LeftEyeLid),
+                nameof(FestraVRCFaceTrackingFTVendor.RightEyeLid),
+                nameof(FestraVRCFaceTrackingFTVendor.CombinedEyeLid),
+                nameof(FestraVRCFaceTrackingFTVendor.EyesWiden),
+                nameof(FestraVRCFaceTrackingFTVendor.EyesDilation),
+                nameof(FestraVRCFaceTrackingFTVendor.EyesSqueeze),
+                nameof(FestraVRCFaceTrackingFTVendor.LeftEyeX),
+                nameof(FestraVRCFaceTrackingFTVendor.LeftEyeY),
+                nameof(FestraVRCFaceTrackingFTVendor.RightEyeX),
+                nameof(FestraVRCFaceTrackingFTVendor.RightEyeY),
+                nameof(FestraVRCFaceTrackingFTVendor.LeftEyeWiden),
+                nameof(FestraVRCFaceTrackingFTVendor.RightEyeWiden),
+                nameof(FestraVRCFaceTrackingFTVendor.LeftEyeSqueeze),
+                nameof(FestraVRCFaceTrackingFTVendor.RightEyeSqueeze),
+                nameof(FestraVRCFaceTrackingFTVendor.LeftEyeLidExpanded),
+                nameof(FestraVRCFaceTrackingFTVendor.RightEyeLidExpanded),
+                nameof(FestraVRCFaceTrackingFTVendor.CombinedEyeLidExpanded),
+                nameof(FestraVRCFaceTrackingFTVendor.LeftEyeLidExpandedSqueeze),
+                nameof(FestraVRCFaceTrackingFTVendor.RightEyeLidExpandedSqueeze),
+                nameof(FestraVRCFaceTrackingFTVendor.CombinedEyeLidExpandedSqueeze));
 
-            DisplayGroupFor(nameof(ComboGestureVRCFaceTrackingFTVendor.GROUP_Lip_Tracking_Parameters),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.JawRight),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.JawLeft),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.JawForward),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.JawOpen),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthApeShape),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthUpperRight),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthUpperLeft),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthLowerRight),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthLowerLeft),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthUpperOverturn),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthLowerOverturn),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthPout),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthSmileRight),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthSmileLeft),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthSadRight),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthSadLeft),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.CheekPuffRight),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.CheekPuffLeft),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.CheekSuck),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthUpperUpRight),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthUpperUpLeft),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthLowerDownRight),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthLowerDownLeft),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthUpperInside),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthLowerInside),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthLowerOverlay),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.TongueLongStep1),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.TongueLongStep2),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.TongueDown),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.TongueUp),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.TongueRight),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.TongueLeft),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.TongueRoll),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.TongueUpLeftMorph),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.TongueUpRightMorph),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.TongueDownLeftMorph),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.TongueDownRightMorph));
+            DisplayGroupFor(nameof(FestraVRCFaceTrackingFTVendor.GROUP_Lip_Tracking_Parameters),
+                nameof(FestraVRCFaceTrackingFTVendor.JawRight),
+                nameof(FestraVRCFaceTrackingFTVendor.JawLeft),
+                nameof(FestraVRCFaceTrackingFTVendor.JawForward),
+                nameof(FestraVRCFaceTrackingFTVendor.JawOpen),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthApeShape),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthUpperRight),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthUpperLeft),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthLowerRight),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthLowerLeft),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthUpperOverturn),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthLowerOverturn),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthPout),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthSmileRight),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthSmileLeft),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthSadRight),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthSadLeft),
+                nameof(FestraVRCFaceTrackingFTVendor.CheekPuffRight),
+                nameof(FestraVRCFaceTrackingFTVendor.CheekPuffLeft),
+                nameof(FestraVRCFaceTrackingFTVendor.CheekSuck),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthUpperUpRight),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthUpperUpLeft),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthLowerDownRight),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthLowerDownLeft),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthUpperInside),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthLowerInside),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthLowerOverlay),
+                nameof(FestraVRCFaceTrackingFTVendor.TongueLongStep1),
+                nameof(FestraVRCFaceTrackingFTVendor.TongueLongStep2),
+                nameof(FestraVRCFaceTrackingFTVendor.TongueDown),
+                nameof(FestraVRCFaceTrackingFTVendor.TongueUp),
+                nameof(FestraVRCFaceTrackingFTVendor.TongueRight),
+                nameof(FestraVRCFaceTrackingFTVendor.TongueLeft),
+                nameof(FestraVRCFaceTrackingFTVendor.TongueRoll),
+                nameof(FestraVRCFaceTrackingFTVendor.TongueUpLeftMorph),
+                nameof(FestraVRCFaceTrackingFTVendor.TongueUpRightMorph),
+                nameof(FestraVRCFaceTrackingFTVendor.TongueDownLeftMorph),
+                nameof(FestraVRCFaceTrackingFTVendor.TongueDownRightMorph));
 
-            DisplayGroupFor(nameof(ComboGestureVRCFaceTrackingFTVendor.GROUP_General_Combined_Lip_Parameters),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.JawX),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthUpper),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthLower),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthX),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.SmileSadRight),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.SmileSadLeft),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.SmileSad),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.TongueY),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.TongueX),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.TongueSteps),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.PuffSuckRight),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.PuffSuckLeft),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.PuffSuck));
+            DisplayGroupFor(nameof(FestraVRCFaceTrackingFTVendor.GROUP_General_Combined_Lip_Parameters),
+                nameof(FestraVRCFaceTrackingFTVendor.JawX),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthUpper),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthLower),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthX),
+                nameof(FestraVRCFaceTrackingFTVendor.SmileSadRight),
+                nameof(FestraVRCFaceTrackingFTVendor.SmileSadLeft),
+                nameof(FestraVRCFaceTrackingFTVendor.SmileSad),
+                nameof(FestraVRCFaceTrackingFTVendor.TongueY),
+                nameof(FestraVRCFaceTrackingFTVendor.TongueX),
+                nameof(FestraVRCFaceTrackingFTVendor.TongueSteps),
+                nameof(FestraVRCFaceTrackingFTVendor.PuffSuckRight),
+                nameof(FestraVRCFaceTrackingFTVendor.PuffSuckLeft),
+                nameof(FestraVRCFaceTrackingFTVendor.PuffSuck));
 
-            DisplayGroupFor(nameof(ComboGestureVRCFaceTrackingFTVendor.GROUP_Jaw_Open_Combined_Lip_Parameters),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.JawOpenApe),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.JawOpenPuff),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.JawOpenPuffRight),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.JawOpenPuffLeft),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.JawOpenSuck),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.JawOpenForward));
+            DisplayGroupFor(nameof(FestraVRCFaceTrackingFTVendor.GROUP_Jaw_Open_Combined_Lip_Parameters),
+                nameof(FestraVRCFaceTrackingFTVendor.JawOpenApe),
+                nameof(FestraVRCFaceTrackingFTVendor.JawOpenPuff),
+                nameof(FestraVRCFaceTrackingFTVendor.JawOpenPuffRight),
+                nameof(FestraVRCFaceTrackingFTVendor.JawOpenPuffLeft),
+                nameof(FestraVRCFaceTrackingFTVendor.JawOpenSuck),
+                nameof(FestraVRCFaceTrackingFTVendor.JawOpenForward));
 
-            DisplayGroupFor(nameof(ComboGestureVRCFaceTrackingFTVendor.GROUP_Mouth_Upper_Up_Right_Combined_Lip_Parameters),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthUpperUpRightUpperInside),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthUpperUpRightPuffRight),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthUpperUpRightApe),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthUpperUpRightPout),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthUpperUpRightOverlay));
+            DisplayGroupFor(nameof(FestraVRCFaceTrackingFTVendor.GROUP_Mouth_Upper_Up_Right_Combined_Lip_Parameters),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthUpperUpRightUpperInside),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthUpperUpRightPuffRight),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthUpperUpRightApe),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthUpperUpRightPout),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthUpperUpRightOverlay));
 
-            DisplayGroupFor(nameof(ComboGestureVRCFaceTrackingFTVendor.GROUP_Mouth_Upper_Up_Left_Combined_Parameters),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthUpperUpLeftUpperInside),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthUpperUpLeftPuffLeft),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthUpperUpLeftApe),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthUpperUpLeftPout),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthUpperUpLeftOverlay));
+            DisplayGroupFor(nameof(FestraVRCFaceTrackingFTVendor.GROUP_Mouth_Upper_Up_Left_Combined_Parameters),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthUpperUpLeftUpperInside),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthUpperUpLeftPuffLeft),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthUpperUpLeftApe),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthUpperUpLeftPout),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthUpperUpLeftOverlay));
 
-            DisplayGroupFor(nameof(ComboGestureVRCFaceTrackingFTVendor.GROUP_Mouth_Upper_Up_Combined_Parameters),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthUpperUpUpperInside),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthUpperUpInside),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthUpperUpPuff),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthUpperUpPuffLeft),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthUpperUpPuffRight),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthUpperUpApe),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthUpperUpPout),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthUpperUpOverlay));
+            DisplayGroupFor(nameof(FestraVRCFaceTrackingFTVendor.GROUP_Mouth_Upper_Up_Combined_Parameters),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthUpperUpUpperInside),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthUpperUpInside),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthUpperUpPuff),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthUpperUpPuffLeft),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthUpperUpPuffRight),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthUpperUpApe),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthUpperUpPout),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthUpperUpOverlay));
 
-            DisplayGroupFor(nameof(ComboGestureVRCFaceTrackingFTVendor.GROUP_Mouth_Lower_Down_Right_Combined_Parameters),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthLowerDownRightLowerInside),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthLowerDownRightPuffRight),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthLowerDownRightApe),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthLowerDownRightPout),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthLowerDownRightOverlay));
+            DisplayGroupFor(nameof(FestraVRCFaceTrackingFTVendor.GROUP_Mouth_Lower_Down_Right_Combined_Parameters),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthLowerDownRightLowerInside),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthLowerDownRightPuffRight),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthLowerDownRightApe),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthLowerDownRightPout),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthLowerDownRightOverlay));
 
-            DisplayGroupFor(nameof(ComboGestureVRCFaceTrackingFTVendor.GROUP_Mouth_Lower_Down_Left_Combined_Parameters),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthLowerDownLeftLowerInside),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthLowerDownLeftPuffLeft),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthLowerDownLeftApe),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthLowerDownLeftPout),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthLowerDownLeftOverlay));
+            DisplayGroupFor(nameof(FestraVRCFaceTrackingFTVendor.GROUP_Mouth_Lower_Down_Left_Combined_Parameters),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthLowerDownLeftLowerInside),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthLowerDownLeftPuffLeft),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthLowerDownLeftApe),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthLowerDownLeftPout),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthLowerDownLeftOverlay));
 
-            DisplayGroupFor(nameof(ComboGestureVRCFaceTrackingFTVendor.GROUP_Mouth_Lower_Down_Combined_Parameters),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthLowerDownLowerInside),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthLowerDownInside),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthLowerDownPuff),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthLowerDownPuffLeft),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthLowerDownPuffRight),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthLowerDownApe),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthLowerDownPout),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.MouthLowerDownOverlay));
+            DisplayGroupFor(nameof(FestraVRCFaceTrackingFTVendor.GROUP_Mouth_Lower_Down_Combined_Parameters),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthLowerDownLowerInside),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthLowerDownInside),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthLowerDownPuff),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthLowerDownPuffLeft),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthLowerDownPuffRight),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthLowerDownApe),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthLowerDownPout),
+                nameof(FestraVRCFaceTrackingFTVendor.MouthLowerDownOverlay));
 
-            DisplayGroupFor(nameof(ComboGestureVRCFaceTrackingFTVendor.GROUP_Smile_Right_Combined_Parameters),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.SmileRightUpperOverturn),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.SmileRightLowerOverturn),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.SmileRightOverturn),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.SmileRightApe),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.SmileRightOverlay),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.SmileRightPout));
+            DisplayGroupFor(nameof(FestraVRCFaceTrackingFTVendor.GROUP_Smile_Right_Combined_Parameters),
+                nameof(FestraVRCFaceTrackingFTVendor.SmileRightUpperOverturn),
+                nameof(FestraVRCFaceTrackingFTVendor.SmileRightLowerOverturn),
+                nameof(FestraVRCFaceTrackingFTVendor.SmileRightOverturn),
+                nameof(FestraVRCFaceTrackingFTVendor.SmileRightApe),
+                nameof(FestraVRCFaceTrackingFTVendor.SmileRightOverlay),
+                nameof(FestraVRCFaceTrackingFTVendor.SmileRightPout));
 
-            DisplayGroupFor(nameof(ComboGestureVRCFaceTrackingFTVendor.GROUP_Smile_Left_Combined_Parameters),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.SmileLeftUpperOverturn),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.SmileLeftLowerOverturn),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.SmileLeftOverturn),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.SmileLeftApe),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.SmileLeftOverlay),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.SmileLeftPout));
+            DisplayGroupFor(nameof(FestraVRCFaceTrackingFTVendor.GROUP_Smile_Left_Combined_Parameters),
+                nameof(FestraVRCFaceTrackingFTVendor.SmileLeftUpperOverturn),
+                nameof(FestraVRCFaceTrackingFTVendor.SmileLeftLowerOverturn),
+                nameof(FestraVRCFaceTrackingFTVendor.SmileLeftOverturn),
+                nameof(FestraVRCFaceTrackingFTVendor.SmileLeftApe),
+                nameof(FestraVRCFaceTrackingFTVendor.SmileLeftOverlay),
+                nameof(FestraVRCFaceTrackingFTVendor.SmileLeftPout));
 
-            DisplayGroupFor(nameof(ComboGestureVRCFaceTrackingFTVendor.GROUP_Smile_Combined_Parameters),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.SmileUpperOverturn),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.SmileLowerOverturn),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.SmileApe),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.SmileOverlay),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.SmilePout));
+            DisplayGroupFor(nameof(FestraVRCFaceTrackingFTVendor.GROUP_Smile_Combined_Parameters),
+                nameof(FestraVRCFaceTrackingFTVendor.SmileUpperOverturn),
+                nameof(FestraVRCFaceTrackingFTVendor.SmileLowerOverturn),
+                nameof(FestraVRCFaceTrackingFTVendor.SmileApe),
+                nameof(FestraVRCFaceTrackingFTVendor.SmileOverlay),
+                nameof(FestraVRCFaceTrackingFTVendor.SmilePout));
 
-            DisplayGroupFor(nameof(ComboGestureVRCFaceTrackingFTVendor.GROUP_Cheek_Puff_Right_Combined_Parameters),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.PuffRightUpperOverturn),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.PuffRightLowerOverturn),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.PuffRightOverturn));
+            DisplayGroupFor(nameof(FestraVRCFaceTrackingFTVendor.GROUP_Cheek_Puff_Right_Combined_Parameters),
+                nameof(FestraVRCFaceTrackingFTVendor.PuffRightUpperOverturn),
+                nameof(FestraVRCFaceTrackingFTVendor.PuffRightLowerOverturn),
+                nameof(FestraVRCFaceTrackingFTVendor.PuffRightOverturn));
 
-            DisplayGroupFor(nameof(ComboGestureVRCFaceTrackingFTVendor.GROUP_Cheek_Puff_Left_Combined_Parameters),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.PuffLeftUpperOverturn),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.PuffLeftLowerOverturn),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.PuffLeftOverturn));
+            DisplayGroupFor(nameof(FestraVRCFaceTrackingFTVendor.GROUP_Cheek_Puff_Left_Combined_Parameters),
+                nameof(FestraVRCFaceTrackingFTVendor.PuffLeftUpperOverturn),
+                nameof(FestraVRCFaceTrackingFTVendor.PuffLeftLowerOverturn),
+                nameof(FestraVRCFaceTrackingFTVendor.PuffLeftOverturn));
 
-            DisplayGroupFor(nameof(ComboGestureVRCFaceTrackingFTVendor.GROUP_Cheek_Puff_Combined_Parameters),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.PuffUpperOverturn),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.PuffLowerOverturn),
-                nameof(ComboGestureVRCFaceTrackingFTVendor.PuffOverturn));
+            DisplayGroupFor(nameof(FestraVRCFaceTrackingFTVendor.GROUP_Cheek_Puff_Combined_Parameters),
+                nameof(FestraVRCFaceTrackingFTVendor.PuffUpperOverturn),
+                nameof(FestraVRCFaceTrackingFTVendor.PuffLowerOverturn),
+                nameof(FestraVRCFaceTrackingFTVendor.PuffOverturn));
                 
             serializedObject.ApplyModifiedProperties();
         }
 
         private void DisplayGroupFor(string groupPropertyName, params string[] constituents)
         {
-            var vendor = ((ComboGestureFTVendor)target);
+            var vendor = ((FestraFTVendor)target);
             var expressionParametersNullable = vendor.expressionParameters;
             // var group = serializedObject.FindProperty(groupPropertyName);
-            var map = ((ComboGestureVRCFaceTrackingFTVendor)target).ExposeMap();
+            var map = ((FestraVRCFaceTrackingFTVendor)target).ExposeMap();
             EditorGUILayout.LabelField(groupPropertyName.Replace("GROUP_", "").Replace("_", " "), EditorStyles.boldLabel);
             // EditorGUILayout.PropertyField(group, new GUIContent("Group"));
-            // var groupValue = (CgeVendorGroup)group.intValue;
-            // var isSome = groupValue == CgeVendorGroup.Some;
+            // var groupValue = (FestraVendorGroup)group.intValue;
+            // var isSome = groupValue == FestraVendorGroup.Some;
             // EditorGUI.BeginDisabledGroup(!isSome);
             EditorGUILayout.BeginVertical("GroupBox");
             foreach (var constituent in constituents)
@@ -248,7 +248,7 @@ It is INHERENTLY DANGEROUS to run code that someone else has written. It is your
                     }
                 }
                 EditorGUILayout.EndHorizontal();
-                if (vendor.debugShowInfluences == ComboGestureFTVendor.CgeDebugInfluence.All || vendor.debugShowInfluences == ComboGestureFTVendor.CgeDebugInfluence.OnlyActive && sp.boolValue)
+                if (vendor.debugShowInfluences == FestraFTVendor.FestraDebugInfluence.All || vendor.debugShowInfluences == FestraFTVendor.FestraDebugInfluence.OnlyActive && sp.boolValue)
                 {
                     EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.TextField(string.Join(", ", map[constituent].Select(actuator => actuator.element + $"[{actuator.actuator.neutral}:{actuator.actuator.actuated}]").ToArray()));
@@ -259,17 +259,17 @@ It is INHERENTLY DANGEROUS to run code that someone else has written. It is your
             // EditorGUI.EndDisabledGroup();
         }
 
-        private void FieldFor(string propertyName, CgeVendorGroup groupValue)
+        private void FieldFor(string propertyName, FestraVendorGroup groupValue)
         {
             switch (groupValue)
             {
-                case CgeVendorGroup.None:
+                case FestraVendorGroup.None:
                     EditorGUILayout.Toggle(propertyName, false);
                     break;
-                case CgeVendorGroup.All:
+                case FestraVendorGroup.All:
                     EditorGUILayout.Toggle(propertyName, true);
                     break;
-                case CgeVendorGroup.Some:
+                case FestraVendorGroup.Some:
                     EditorGUILayout.PropertyField(serializedObject.FindProperty(propertyName), new GUIContent(propertyName));
                     break;
                 default:

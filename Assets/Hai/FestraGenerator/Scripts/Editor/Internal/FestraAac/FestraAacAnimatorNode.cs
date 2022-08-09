@@ -1,19 +1,19 @@
 using UnityEngine;
 
-namespace Hai.FestraGenerator.Scripts.Editor.Internal.CgeAac
+namespace Hai.FestraGenerator.Scripts.Editor.Internal.FestraAac
 {
-    public abstract class CgeAacAnimatorNode
+    public abstract class FestraAacAnimatorNode
     {
         protected internal abstract Vector3 GetPosition();
         protected internal abstract void SetPosition(Vector3 position);
     }
 
-    public abstract class CgeAacAnimatorNode<TNode> : CgeAacAnimatorNode where TNode : CgeAacAnimatorNode<TNode>
+    public abstract class FestraAacAnimatorNode<TNode> : FestraAacAnimatorNode where TNode : FestraAacAnimatorNode<TNode>
     {
-        protected readonly CgeAacFlStateMachine ParentMachine;
-        protected readonly ICgeAacDefaultsProvider DefaultsProvider;
+        protected readonly FestraAacFlStateMachine ParentMachine;
+        protected readonly IFestraAacDefaultsProvider DefaultsProvider;
 
-        protected CgeAacAnimatorNode(CgeAacFlStateMachine parentMachine, ICgeAacDefaultsProvider defaultsProvider)
+        protected FestraAacAnimatorNode(FestraAacFlStateMachine parentMachine, IFestraAacDefaultsProvider defaultsProvider)
         {
             ParentMachine = parentMachine;
             DefaultsProvider = defaultsProvider;

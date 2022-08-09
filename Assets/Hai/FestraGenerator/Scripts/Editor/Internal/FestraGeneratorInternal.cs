@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Hai.FestraGenerator.Scripts.Components;
-using Hai.FestraGenerator.Scripts.Editor.Internal.CgeAac;
+using Hai.FestraGenerator.Scripts.Editor.Internal.FestraAac;
 using UnityEditor;
 using UnityEditor.Animations;
 using UnityEngine;
 
-namespace Hai.ComboGesture.Scripts.Editor.Internal
+namespace Hai.FestraGenerator.Scripts.Editor.Internal
 {
     // Vendors define sensors. Each sensor may have several actuators, each actuator acts on a single element.
     // - An element can only be actuated by one actuator.
@@ -16,17 +15,17 @@ namespace Hai.ComboGesture.Scripts.Editor.Internal
     // - For instance, a vendor may use EyeX to actuate an element as a Joystick from -1 to 1,
     //   but another vendor could actuate the same element as an Aperture from 0 to 1.
     // By convention, the element name is the blend shape name of a SkinnedMesh (case insensitive).
-    public class CgeFaceTracking
+    public class FestraGeneratorInternal
     {
         private const string FaceTrackingLayerName = "Hai_GestureFaceTracking";
         public const string FTInfluenceParam = "_Hai_GestureFTInfluence";
 
-        private readonly ComboGestureFaceTracking _faceTracking;
+        private readonly FestraAvatar _faceTracking;
         private readonly AnimatorController _fx;
-        private readonly CgeAssetContainer _assetContainer;
-        private readonly List<CgeAacFlClip> _generatedClips = new List<CgeAacFlClip>();
+        private readonly FestraAssetContainer _assetContainer;
+        private readonly List<FestraAacFlClip> _generatedClips = new List<FestraAacFlClip>();
 
-        internal CgeFaceTracking(ComboGestureFaceTracking faceTracking, AnimatorController fx, CgeAssetContainer assetContainer)
+        internal FestraGeneratorInternal(FestraAvatar faceTracking, AnimatorController fx, FestraAssetContainer assetContainer)
         {
             _faceTracking = faceTracking;
             _fx = fx;
@@ -53,7 +52,7 @@ namespace Hai.ComboGesture.Scripts.Editor.Internal
                 .ToArray();
             
             // Prepare animator layer
-            var aac = _assetContainer.ExposeCgeAac();
+            var aac = _assetContainer.ExposeFestraAac();
             var layer = ReinitializeLayerAsMachinist();
 
             // Technique perfected by research lead by Razgriz, as follows.
@@ -167,7 +166,7 @@ namespace Hai.ComboGesture.Scripts.Editor.Internal
         private void CreateTempEyeLayers()
         {
             // FIXME: This is vendor and config specific!!!
-            var aac = _assetContainer.ExposeCgeAac();
+            var aac = _assetContainer.ExposeFestraAac();
             var left = aac.CreateSupportingArbitraryControllerLayer(_fx, FaceTrackingLayerName + "_EyeLeft");
             var right = aac.CreateSupportingArbitraryControllerLayer(_fx, FaceTrackingLayerName + "_EyeRight");
             FillIn(left, aac, _faceTracking.eyeLeftCenter, _faceTracking.eyeLeftDown, _faceTracking.eyeLeftUp, _faceTracking.eyeLeftLeft, _faceTracking.eyeLeftRight, left.FloatParameter("LeftEyeX__FPInterp"), left.FloatParameter("EyesY__FPInterp"));
@@ -176,7 +175,7 @@ namespace Hai.ComboGesture.Scripts.Editor.Internal
             // FIXME should be FT not FP
         }
 
-        private void FillIn(CgeAacFlLayer layer, CgeAacFlBase aac, AnimationClip center, AnimationClip down, AnimationClip up, AnimationClip left, AnimationClip right, CgeAacFlFloatParameter x, CgeAacFlFloatParameter y)
+        private void FillIn(FestraAacFlLayer layer, FestraAacFlBase aac, AnimationClip center, AnimationClip down, AnimationClip up, AnimationClip left, AnimationClip right, FestraAacFlFloatParameter x, FestraAacFlFloatParameter y)
         {
             var blendTree = aac.NewBlendTreeAsRaw();
             blendTree.blendType = BlendTreeType.SimpleDirectional2D;
@@ -199,7 +198,7 @@ namespace Hai.ComboGesture.Scripts.Editor.Internal
             active.TransitionsTo(inactive).WithTransitionDurationSeconds(0.1f).When(enableFaceTrackingParam.IsFalse());
         }
 
-        private BlendShapeAnimation MakeBlendShapeAnimation(string element, CgeAacFlBase aac, int directBlendTreeBypassMultiplier, int actuatorCountForThisElement)
+        private BlendShapeAnimation MakeBlendShapeAnimation(string element, FestraAacFlBase aac, int directBlendTreeBypassMultiplier, int actuatorCountForThisElement)
         {
             var elementNameLower = element.ToLowerInvariant();
             var neutral = CreateNewClip(aac);
@@ -222,7 +221,7 @@ namespace Hai.ComboGesture.Scripts.Editor.Internal
             };
         }
 
-        private static BlendTree MakeBlendShapeTree(string element, CgeActuator actuator, CgeAacFlBase aac, Dictionary<string, BlendShapeAnimation> elementToBlendShapeBinding, CgeAacFlLayer layer)
+        private static BlendTree MakeBlendShapeTree(string element, FestraActuator actuator, FestraAacFlBase aac, Dictionary<string, BlendShapeAnimation> elementToBlendShapeBinding, FestraAacFlLayer layer)
         {
             var blendTree = aac.NewBlendTreeAsRaw();
             blendTree.blendType = BlendTreeType.Simple1D;
@@ -247,7 +246,7 @@ namespace Hai.ComboGesture.Scripts.Editor.Internal
             return blendTree;
         }
 
-        private BlendTree MakeSensorInterpolatorTree(string sensorName, CgeAacFlBase aac, CgeAacFlLayer layer, CgeAacFlFloatParameter factorParam, int directBlendTreeBypassMultiplier)
+        private BlendTree MakeSensorInterpolatorTree(string sensorName, FestraAacFlBase aac, FestraAacFlLayer layer, FestraAacFlFloatParameter factorParam, int directBlendTreeBypassMultiplier)
         {
             var sensorParameter = layer.FloatParameter(sensorName);
             var interpolatedParameter = layer.FloatParameter(SensorNameToInterpolatedParameterName(sensorName));
@@ -281,7 +280,7 @@ namespace Hai.ComboGesture.Scripts.Editor.Internal
             return sensorName + "__FPInterp"; // FIXME should be FT not FP
         }
 
-        private BlendTree CreateProxyTree(CgeAacFlBase aac, CgeAacFlFloatParameter parameter, CgeAacFlClip negativeClip, CgeAacFlClip positiveClip)
+        private BlendTree CreateProxyTree(FestraAacFlBase aac, FestraAacFlFloatParameter parameter, FestraAacFlClip negativeClip, FestraAacFlClip positiveClip)
         {
             var proxyTree = aac.NewBlendTreeAsRaw();
             proxyTree.blendParameter = parameter.Name;
@@ -324,7 +323,7 @@ namespace Hai.ComboGesture.Scripts.Editor.Internal
             return found.ToArray();
         }
 
-        private CgeAacFlClip CreateNewClip(CgeAacFlBase aac)
+        private FestraAacFlClip CreateNewClip(FestraAacFlBase aac)
         {
             var generated = aac.NewClip();
             _generatedClips.Add(generated);
@@ -332,9 +331,9 @@ namespace Hai.ComboGesture.Scripts.Editor.Internal
                 .Animating(clip => clip.Animates("_ignored", typeof(GameObject), "m_IsActive").WithOneFrame(0f));
         }
 
-        private CgeAacFlLayer ReinitializeLayerAsMachinist()
+        private FestraAacFlLayer ReinitializeLayerAsMachinist()
         {
-            return _assetContainer.ExposeCgeAac().CreateSupportingArbitraryControllerLayer(_fx, FaceTrackingLayerName);
+            return _assetContainer.ExposeFestraAac().CreateSupportingArbitraryControllerLayer(_fx, FaceTrackingLayerName);
 
             // TODO: AvatarMask
         }

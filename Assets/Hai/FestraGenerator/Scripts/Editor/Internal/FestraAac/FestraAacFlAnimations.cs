@@ -4,20 +4,20 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace Hai.FestraGenerator.Scripts.Editor.Internal.CgeAac
+namespace Hai.FestraGenerator.Scripts.Editor.Internal.FestraAac
 {
-    public readonly struct CgeAacFlClip
+    public readonly struct FestraAacFlClip
     {
-        private readonly CgeAacConfiguration _component;
+        private readonly FestraAacConfiguration _component;
         public AnimationClip Clip { get; }
 
-        public CgeAacFlClip(CgeAacConfiguration component, AnimationClip clip)
+        public FestraAacFlClip(FestraAacConfiguration component, AnimationClip clip)
         {
             _component = component;
             Clip = clip;
         }
 
-        public CgeAacFlClip Looping()
+        public FestraAacFlClip Looping()
         {
             var settings = AnimationUtility.GetAnimationClipSettings(Clip);
             settings.loopTime = true;
@@ -26,7 +26,7 @@ namespace Hai.FestraGenerator.Scripts.Editor.Internal.CgeAac
             return this;
         }
 
-        public CgeAacFlClip NonLooping()
+        public FestraAacFlClip NonLooping()
         {
             var settings = AnimationUtility.GetAnimationClipSettings(Clip);
             settings.loopTime = false;
@@ -35,94 +35,94 @@ namespace Hai.FestraGenerator.Scripts.Editor.Internal.CgeAac
             return this;
         }
 
-        public CgeAacFlClip Animating(Action<CgeAacFlEditClip> action)
+        public FestraAacFlClip Animating(Action<FestraAacFlEditClip> action)
         {
-            action.Invoke(new CgeAacFlEditClip(_component, Clip));
+            action.Invoke(new FestraAacFlEditClip(_component, Clip));
             return this;
         }
 
-        public CgeAacFlClip Toggling(GameObject[] gameObjectsWithNulls, bool value)
+        public FestraAacFlClip Toggling(GameObject[] gameObjectsWithNulls, bool value)
         {
             var defensiveObjects = gameObjectsWithNulls.Where(o => o != null); // Allow users to remove an item in the middle of the array
             foreach (var component in defensiveObjects)
             {
-                var binding = CgeAacV0.Binding(_component, typeof(GameObject), component.transform, "m_IsActive");
+                var binding = FestraAacV0.Binding(_component, typeof(GameObject), component.transform, "m_IsActive");
 
-                AnimationUtility.SetEditorCurve(Clip, binding, CgeAacV0.OneFrame(value ? 1f : 0f));
+                AnimationUtility.SetEditorCurve(Clip, binding, FestraAacV0.OneFrame(value ? 1f : 0f));
             }
 
             return this;
         }
 
-        public CgeAacFlClip BlendShape(SkinnedMeshRenderer renderer, string blendShapeName, float value)
+        public FestraAacFlClip BlendShape(SkinnedMeshRenderer renderer, string blendShapeName, float value)
         {
-            var binding = CgeAacV0.Binding(_component, typeof(SkinnedMeshRenderer), renderer.transform, $"blendShape.{blendShapeName}");
+            var binding = FestraAacV0.Binding(_component, typeof(SkinnedMeshRenderer), renderer.transform, $"blendShape.{blendShapeName}");
 
-            AnimationUtility.SetEditorCurve(Clip, binding, CgeAacV0.OneFrame(value));
+            AnimationUtility.SetEditorCurve(Clip, binding, FestraAacV0.OneFrame(value));
 
             return this;
         }
 
-        public CgeAacFlClip BlendShape(SkinnedMeshRenderer[] rendererWithNulls, string blendShapeName, float value)
+        public FestraAacFlClip BlendShape(SkinnedMeshRenderer[] rendererWithNulls, string blendShapeName, float value)
         {
             var defensiveObjects = rendererWithNulls.Where(o => o != null); // Allow users to remove an item in the middle of the array
             foreach (var component in defensiveObjects)
             {
-                var binding = CgeAacV0.Binding(_component, typeof(SkinnedMeshRenderer), component.transform, $"blendShape.{blendShapeName}");
+                var binding = FestraAacV0.Binding(_component, typeof(SkinnedMeshRenderer), component.transform, $"blendShape.{blendShapeName}");
 
-                AnimationUtility.SetEditorCurve(Clip, binding, CgeAacV0.OneFrame(value));
+                AnimationUtility.SetEditorCurve(Clip, binding, FestraAacV0.OneFrame(value));
             }
 
             return this;
         }
 
-        public CgeAacFlClip Scaling(GameObject[] gameObjectsWithNulls, Vector3 scale)
+        public FestraAacFlClip Scaling(GameObject[] gameObjectsWithNulls, Vector3 scale)
         {
             var defensiveObjects = gameObjectsWithNulls.Where(o => o != null); // Allow users to remove an item in the middle of the array
             foreach (var component in defensiveObjects)
             {
-                AnimationUtility.SetEditorCurve(Clip, CgeAacV0.Binding(_component, typeof(Transform), component.transform, "m_LocalScale.x"), CgeAacV0.OneFrame(scale.x));
-                AnimationUtility.SetEditorCurve(Clip, CgeAacV0.Binding(_component, typeof(Transform), component.transform, "m_LocalScale.y"), CgeAacV0.OneFrame(scale.y));
-                AnimationUtility.SetEditorCurve(Clip, CgeAacV0.Binding(_component, typeof(Transform), component.transform, "m_LocalScale.z"), CgeAacV0.OneFrame(scale.z));
+                AnimationUtility.SetEditorCurve(Clip, FestraAacV0.Binding(_component, typeof(Transform), component.transform, "m_LocalScale.x"), FestraAacV0.OneFrame(scale.x));
+                AnimationUtility.SetEditorCurve(Clip, FestraAacV0.Binding(_component, typeof(Transform), component.transform, "m_LocalScale.y"), FestraAacV0.OneFrame(scale.y));
+                AnimationUtility.SetEditorCurve(Clip, FestraAacV0.Binding(_component, typeof(Transform), component.transform, "m_LocalScale.z"), FestraAacV0.OneFrame(scale.z));
             }
 
             return this;
         }
 
-        public CgeAacFlClip Toggling(GameObject gameObject, bool value)
+        public FestraAacFlClip Toggling(GameObject gameObject, bool value)
         {
-            var binding = CgeAacV0.Binding(_component, typeof(GameObject), gameObject.transform, "m_IsActive");
+            var binding = FestraAacV0.Binding(_component, typeof(GameObject), gameObject.transform, "m_IsActive");
 
-            AnimationUtility.SetEditorCurve(Clip, binding, CgeAacV0.OneFrame(value ? 1f : 0f));
+            AnimationUtility.SetEditorCurve(Clip, binding, FestraAacV0.OneFrame(value ? 1f : 0f));
 
             return this;
         }
 
-        public CgeAacFlClip TogglingComponent(Component[] componentsWithNulls, bool value)
+        public FestraAacFlClip TogglingComponent(Component[] componentsWithNulls, bool value)
         {
             var defensiveComponents = componentsWithNulls.Where(o => o != null); // Allow users to remove an item in the middle of the array
             foreach (var component in defensiveComponents)
             {
-                var binding = CgeAacV0.Binding(_component, component.GetType(), component.transform, "m_Enabled");
+                var binding = FestraAacV0.Binding(_component, component.GetType(), component.transform, "m_Enabled");
 
-                AnimationUtility.SetEditorCurve(Clip, binding, CgeAacV0.OneFrame(value ? 1f : 0f));
+                AnimationUtility.SetEditorCurve(Clip, binding, FestraAacV0.OneFrame(value ? 1f : 0f));
             }
 
             return this;
         }
 
-        public CgeAacFlClip TogglingComponent(Component component, bool value)
+        public FestraAacFlClip TogglingComponent(Component component, bool value)
         {
-            var binding = CgeAacV0.Binding(_component, component.GetType(), component.transform, "m_Enabled");
+            var binding = FestraAacV0.Binding(_component, component.GetType(), component.transform, "m_Enabled");
 
-            AnimationUtility.SetEditorCurve(Clip, binding, CgeAacV0.OneFrame(value ? 1f : 0f));
+            AnimationUtility.SetEditorCurve(Clip, binding, FestraAacV0.OneFrame(value ? 1f : 0f));
 
             return this;
         }
 
-        public CgeAacFlClip SwappingMaterial(Renderer renderer, int slot, Material material)
+        public FestraAacFlClip SwappingMaterial(Renderer renderer, int slot, Material material)
         {
-            var binding = CgeAacV0.Binding(_component, renderer.GetType(), renderer.transform, $"m_Materials.Array.data[{slot}]");
+            var binding = FestraAacV0.Binding(_component, renderer.GetType(), renderer.transform, $"m_Materials.Array.data[{slot}]");
 
             AnimationUtility.SetObjectReferenceCurve(Clip, binding, new[] {
                 new ObjectReferenceKeyframe { time = 0f, value = material },
@@ -132,9 +132,9 @@ namespace Hai.FestraGenerator.Scripts.Editor.Internal.CgeAac
             return this;
         }
 
-        public CgeAacFlClip SwappingMaterial(ParticleSystem particleSystem, int slot, Material material)
+        public FestraAacFlClip SwappingMaterial(ParticleSystem particleSystem, int slot, Material material)
         {
-            var binding = CgeAacV0.Binding(_component, typeof(ParticleSystemRenderer), particleSystem.transform, $"m_Materials.Array.data[{slot}]");
+            var binding = FestraAacV0.Binding(_component, typeof(ParticleSystemRenderer), particleSystem.transform, $"m_Materials.Array.data[{slot}]");
 
             AnimationUtility.SetObjectReferenceCurve(Clip, binding, new[] {
                 new ObjectReferenceKeyframe { time = 0f, value = material },
@@ -145,18 +145,18 @@ namespace Hai.FestraGenerator.Scripts.Editor.Internal.CgeAac
         }
     }
 
-    public readonly struct CgeAacFlEditClip
+    public readonly struct FestraAacFlEditClip
     {
-        private readonly CgeAacConfiguration _component;
+        private readonly FestraAacConfiguration _component;
         public AnimationClip Clip { get; }
 
-        public CgeAacFlEditClip(CgeAacConfiguration component, AnimationClip clip)
+        public FestraAacFlEditClip(FestraAacConfiguration component, AnimationClip clip)
         {
             _component = component;
             Clip = clip;
         }
 
-        public CgeAacFlSettingCurve Animates(string path, Type type, string propertyName)
+        public FestraAacFlSettingCurve Animates(string path, Type type, string propertyName)
         {
             var binding = new EditorCurveBinding
             {
@@ -164,41 +164,41 @@ namespace Hai.FestraGenerator.Scripts.Editor.Internal.CgeAac
                 type = type,
                 propertyName = propertyName
             };
-            return new CgeAacFlSettingCurve(Clip, new[] {binding});
+            return new FestraAacFlSettingCurve(Clip, new[] {binding});
         }
 
-        public CgeAacFlSettingCurve Animates(Transform transform, Type type, string propertyName)
+        public FestraAacFlSettingCurve Animates(Transform transform, Type type, string propertyName)
         {
-            var binding = CgeAacV0.Binding(_component, type, transform, propertyName);
+            var binding = FestraAacV0.Binding(_component, type, transform, propertyName);
 
-            return new CgeAacFlSettingCurve(Clip, new[] {binding});
+            return new FestraAacFlSettingCurve(Clip, new[] {binding});
         }
 
-        public CgeAacFlSettingCurve Animates(GameObject gameObject)
+        public FestraAacFlSettingCurve Animates(GameObject gameObject)
         {
-            var binding = CgeAacV0.Binding(_component, typeof(GameObject), gameObject.transform, "m_IsActive");
+            var binding = FestraAacV0.Binding(_component, typeof(GameObject), gameObject.transform, "m_IsActive");
 
-            return new CgeAacFlSettingCurve(Clip, new[] {binding});
+            return new FestraAacFlSettingCurve(Clip, new[] {binding});
         }
 
-        public CgeAacFlSettingCurve Animates(Component anyComponent, string property)
+        public FestraAacFlSettingCurve Animates(Component anyComponent, string property)
         {
             var binding = Internal_BindingFromComponent(anyComponent, property);
 
-            return new CgeAacFlSettingCurve(Clip, new[] {binding});
+            return new FestraAacFlSettingCurve(Clip, new[] {binding});
         }
 
-        public CgeAacFlSettingCurve Animates(Component[] anyComponents, string property)
+        public FestraAacFlSettingCurve Animates(Component[] anyComponents, string property)
         {
             var that = this;
             var bindings = anyComponents
                 .Select(anyComponent => that.Internal_BindingFromComponent(anyComponent, property))
                 .ToArray();
 
-            return new CgeAacFlSettingCurve(Clip, bindings);
+            return new FestraAacFlSettingCurve(Clip, bindings);
         }
 
-        public CgeAacFlSettingCurve AnimatesAnimator(CgeAacFlParameter floatParameter)
+        public FestraAacFlSettingCurve AnimatesAnimator(FestraAacFlParameter floatParameter)
         {
             var binding = new EditorCurveBinding
             {
@@ -206,23 +206,23 @@ namespace Hai.FestraGenerator.Scripts.Editor.Internal.CgeAac
                 type = typeof(Animator),
                 propertyName = floatParameter.Name
             };
-            return new CgeAacFlSettingCurve(Clip, new[] {binding});
+            return new FestraAacFlSettingCurve(Clip, new[] {binding});
         }
 
-        public CgeAacFlSettingCurveColor AnimatesColor(Component anyComponent, string property)
+        public FestraAacFlSettingCurveColor AnimatesColor(Component anyComponent, string property)
         {
             var binding = Internal_BindingFromComponent(anyComponent, property);
-            return new CgeAacFlSettingCurveColor(Clip, new[] {binding});
+            return new FestraAacFlSettingCurveColor(Clip, new[] {binding});
         }
 
-        public CgeAacFlSettingCurveColor AnimatesColor(Component[] anyComponents, string property)
+        public FestraAacFlSettingCurveColor AnimatesColor(Component[] anyComponents, string property)
         {
             var that = this;
             var bindings = anyComponents
                 .Select(anyComponent => that.Internal_BindingFromComponent(anyComponent, property))
                 .ToArray();
 
-            return new CgeAacFlSettingCurveColor(Clip, bindings);
+            return new FestraAacFlSettingCurveColor(Clip, bindings);
         }
 
         public EditorCurveBinding BindingFromComponent(Component anyComponent, string propertyName)
@@ -232,16 +232,16 @@ namespace Hai.FestraGenerator.Scripts.Editor.Internal.CgeAac
 
         private EditorCurveBinding Internal_BindingFromComponent(Component anyComponent, string propertyName)
         {
-            return CgeAacV0.Binding(_component, anyComponent.GetType(), anyComponent.transform, propertyName);
+            return FestraAacV0.Binding(_component, anyComponent.GetType(), anyComponent.transform, propertyName);
         }
     }
 
-    public class CgeAacFlSettingCurve
+    public class FestraAacFlSettingCurve
     {
         private readonly AnimationClip _clip;
         private readonly EditorCurveBinding[] _bindings;
 
-        public CgeAacFlSettingCurve(AnimationClip clip, EditorCurveBinding[] bindings)
+        public FestraAacFlSettingCurve(AnimationClip clip, EditorCurveBinding[] bindings)
         {
             _clip = clip;
             _bindings = bindings;
@@ -251,7 +251,7 @@ namespace Hai.FestraGenerator.Scripts.Editor.Internal.CgeAac
         {
             foreach (var binding in _bindings)
             {
-                AnimationUtility.SetEditorCurve(_clip, binding, CgeAacV0.OneFrame(desiredValue));
+                AnimationUtility.SetEditorCurve(_clip, binding, FestraAacV0.OneFrame(desiredValue));
             }
         }
 
@@ -259,29 +259,29 @@ namespace Hai.FestraGenerator.Scripts.Editor.Internal.CgeAac
         {
             foreach (var binding in _bindings)
             {
-                AnimationUtility.SetEditorCurve(_clip, binding, CgeAacV0.ConstantSeconds(seconds, desiredValue));
+                AnimationUtility.SetEditorCurve(_clip, binding, FestraAacV0.ConstantSeconds(seconds, desiredValue));
             }
         }
 
-        public void WithSecondsUnit(Action<CgeAacFlSettingKeyframes> action)
+        public void WithSecondsUnit(Action<FestraAacFlSettingKeyframes> action)
         {
-            InternalWithUnit(CgeAacFlUnit.Seconds, action);
+            InternalWithUnit(FestraAacFlUnit.Seconds, action);
         }
 
-        public void WithFrameCountUnit(Action<CgeAacFlSettingKeyframes> action)
+        public void WithFrameCountUnit(Action<FestraAacFlSettingKeyframes> action)
         {
-            InternalWithUnit(CgeAacFlUnit.Frames, action);
+            InternalWithUnit(FestraAacFlUnit.Frames, action);
         }
 
-        public void WithUnit(CgeAacFlUnit unit, Action<CgeAacFlSettingKeyframes> action)
+        public void WithUnit(FestraAacFlUnit unit, Action<FestraAacFlSettingKeyframes> action)
         {
             InternalWithUnit(unit, action);
         }
 
-        private void InternalWithUnit(CgeAacFlUnit unit, Action<CgeAacFlSettingKeyframes> action)
+        private void InternalWithUnit(FestraAacFlUnit unit, Action<FestraAacFlSettingKeyframes> action)
         {
             var mutatedKeyframes = new List<Keyframe>();
-            var builder = new CgeAacFlSettingKeyframes(unit, mutatedKeyframes);
+            var builder = new FestraAacFlSettingKeyframes(unit, mutatedKeyframes);
             action.Invoke(builder);
 
             foreach (var binding in _bindings)
@@ -299,12 +299,12 @@ namespace Hai.FestraGenerator.Scripts.Editor.Internal.CgeAac
         }
     }
 
-    public class CgeAacFlSettingCurveColor
+    public class FestraAacFlSettingCurveColor
     {
         private readonly AnimationClip _clip;
         private readonly EditorCurveBinding[] _bindings;
 
-        public CgeAacFlSettingCurveColor(AnimationClip clip, EditorCurveBinding[] bindings)
+        public FestraAacFlSettingCurveColor(AnimationClip clip, EditorCurveBinding[] bindings)
         {
             _clip = clip;
             _bindings = bindings;
@@ -314,58 +314,58 @@ namespace Hai.FestraGenerator.Scripts.Editor.Internal.CgeAac
         {
             foreach (var binding in _bindings)
             {
-                AnimationUtility.SetEditorCurve(_clip, CgeAacV0.ToSubBinding(binding, "r"), CgeAacV0.OneFrame(desiredValue.r));
-                AnimationUtility.SetEditorCurve(_clip, CgeAacV0.ToSubBinding(binding, "g"), CgeAacV0.OneFrame(desiredValue.g));
-                AnimationUtility.SetEditorCurve(_clip, CgeAacV0.ToSubBinding(binding, "b"), CgeAacV0.OneFrame(desiredValue.b));
-                AnimationUtility.SetEditorCurve(_clip, CgeAacV0.ToSubBinding(binding, "a"), CgeAacV0.OneFrame(desiredValue.a));
+                AnimationUtility.SetEditorCurve(_clip, FestraAacV0.ToSubBinding(binding, "r"), FestraAacV0.OneFrame(desiredValue.r));
+                AnimationUtility.SetEditorCurve(_clip, FestraAacV0.ToSubBinding(binding, "g"), FestraAacV0.OneFrame(desiredValue.g));
+                AnimationUtility.SetEditorCurve(_clip, FestraAacV0.ToSubBinding(binding, "b"), FestraAacV0.OneFrame(desiredValue.b));
+                AnimationUtility.SetEditorCurve(_clip, FestraAacV0.ToSubBinding(binding, "a"), FestraAacV0.OneFrame(desiredValue.a));
             }
         }
 
-        public void WithKeyframes(CgeAacFlUnit unit, Action<CgeAacFlSettingKeyframesColor> action)
+        public void WithKeyframes(FestraAacFlUnit unit, Action<FestraAacFlSettingKeyframesColor> action)
         {
             var mutatedKeyframesR = new List<Keyframe>();
             var mutatedKeyframesG = new List<Keyframe>();
             var mutatedKeyframesB = new List<Keyframe>();
             var mutatedKeyframesA = new List<Keyframe>();
-            var builder = new CgeAacFlSettingKeyframesColor(unit, mutatedKeyframesR, mutatedKeyframesG, mutatedKeyframesB, mutatedKeyframesA);
+            var builder = new FestraAacFlSettingKeyframesColor(unit, mutatedKeyframesR, mutatedKeyframesG, mutatedKeyframesB, mutatedKeyframesA);
             action.Invoke(builder);
 
             foreach (var binding in _bindings)
             {
-                AnimationUtility.SetEditorCurve(_clip, CgeAacV0.ToSubBinding(binding, "r"), new AnimationCurve(mutatedKeyframesR.ToArray()));
-                AnimationUtility.SetEditorCurve(_clip, CgeAacV0.ToSubBinding(binding, "g"), new AnimationCurve(mutatedKeyframesG.ToArray()));
-                AnimationUtility.SetEditorCurve(_clip, CgeAacV0.ToSubBinding(binding, "b"), new AnimationCurve(mutatedKeyframesB.ToArray()));
-                AnimationUtility.SetEditorCurve(_clip, CgeAacV0.ToSubBinding(binding, "a"), new AnimationCurve(mutatedKeyframesA.ToArray()));
+                AnimationUtility.SetEditorCurve(_clip, FestraAacV0.ToSubBinding(binding, "r"), new AnimationCurve(mutatedKeyframesR.ToArray()));
+                AnimationUtility.SetEditorCurve(_clip, FestraAacV0.ToSubBinding(binding, "g"), new AnimationCurve(mutatedKeyframesG.ToArray()));
+                AnimationUtility.SetEditorCurve(_clip, FestraAacV0.ToSubBinding(binding, "b"), new AnimationCurve(mutatedKeyframesB.ToArray()));
+                AnimationUtility.SetEditorCurve(_clip, FestraAacV0.ToSubBinding(binding, "a"), new AnimationCurve(mutatedKeyframesA.ToArray()));
             }
         }
     }
 
-    public class CgeAacFlSettingKeyframes
+    public class FestraAacFlSettingKeyframes
     {
-        private readonly CgeAacFlUnit _unit;
+        private readonly FestraAacFlUnit _unit;
         private readonly List<Keyframe> _mutatedKeyframes;
 
-        public CgeAacFlSettingKeyframes(CgeAacFlUnit unit, List<Keyframe> mutatedKeyframes)
+        public FestraAacFlSettingKeyframes(FestraAacFlUnit unit, List<Keyframe> mutatedKeyframes)
         {
             _unit = unit;
             _mutatedKeyframes = mutatedKeyframes;
         }
 
-        public CgeAacFlSettingKeyframes Easing(float timeInUnit, float value)
+        public FestraAacFlSettingKeyframes Easing(float timeInUnit, float value)
         {
             _mutatedKeyframes.Add(new Keyframe(AsSeconds(timeInUnit), value, 0, 0));
 
             return this;
         }
 
-        public CgeAacFlSettingKeyframes Constant(float timeInUnit, float value)
+        public FestraAacFlSettingKeyframes Constant(float timeInUnit, float value)
         {
             _mutatedKeyframes.Add(new Keyframe(AsSeconds(timeInUnit), value, 0, float.PositiveInfinity));
 
             return this;
         }
 
-        public CgeAacFlSettingKeyframes Linear(float timeInUnit, float value)
+        public FestraAacFlSettingKeyframes Linear(float timeInUnit, float value)
         {
             float valueEnd = value;
             float valueStart = _mutatedKeyframes.Count == 0 ? value : _mutatedKeyframes.Last().value;
@@ -395,9 +395,9 @@ namespace Hai.FestraGenerator.Scripts.Editor.Internal.CgeAac
         {
             switch (_unit)
             {
-                case CgeAacFlUnit.Frames:
+                case FestraAacFlUnit.Frames:
                     return timeInUnit / 60f;
-                case CgeAacFlUnit.Seconds:
+                case FestraAacFlUnit.Seconds:
                     return timeInUnit;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -405,22 +405,22 @@ namespace Hai.FestraGenerator.Scripts.Editor.Internal.CgeAac
         }
     }
 
-    public class CgeAacFlSettingKeyframesColor
+    public class FestraAacFlSettingKeyframesColor
     {
-        private CgeAacFlSettingKeyframes _r;
-        private CgeAacFlSettingKeyframes _g;
-        private CgeAacFlSettingKeyframes _b;
-        private CgeAacFlSettingKeyframes _a;
+        private FestraAacFlSettingKeyframes _r;
+        private FestraAacFlSettingKeyframes _g;
+        private FestraAacFlSettingKeyframes _b;
+        private FestraAacFlSettingKeyframes _a;
 
-        public CgeAacFlSettingKeyframesColor(CgeAacFlUnit unit, List<Keyframe> mutatedKeyframesR, List<Keyframe> mutatedKeyframesG, List<Keyframe> mutatedKeyframesB, List<Keyframe> mutatedKeyframesA)
+        public FestraAacFlSettingKeyframesColor(FestraAacFlUnit unit, List<Keyframe> mutatedKeyframesR, List<Keyframe> mutatedKeyframesG, List<Keyframe> mutatedKeyframesB, List<Keyframe> mutatedKeyframesA)
         {
-            _r = new CgeAacFlSettingKeyframes(unit, mutatedKeyframesR);
-            _g = new CgeAacFlSettingKeyframes(unit, mutatedKeyframesG);
-            _b = new CgeAacFlSettingKeyframes(unit, mutatedKeyframesB);
-            _a = new CgeAacFlSettingKeyframes(unit, mutatedKeyframesA);
+            _r = new FestraAacFlSettingKeyframes(unit, mutatedKeyframesR);
+            _g = new FestraAacFlSettingKeyframes(unit, mutatedKeyframesG);
+            _b = new FestraAacFlSettingKeyframes(unit, mutatedKeyframesB);
+            _a = new FestraAacFlSettingKeyframes(unit, mutatedKeyframesA);
         }
 
-        public CgeAacFlSettingKeyframesColor Easing(int frame, Color value)
+        public FestraAacFlSettingKeyframesColor Easing(int frame, Color value)
         {
             _r.Easing(frame, value.r);
             _g.Easing(frame, value.g);
@@ -430,7 +430,7 @@ namespace Hai.FestraGenerator.Scripts.Editor.Internal.CgeAac
             return this;
         }
 
-        public CgeAacFlSettingKeyframesColor Linear(float frame, Color value)
+        public FestraAacFlSettingKeyframesColor Linear(float frame, Color value)
         {
             _r.Linear(frame, value.r);
             _g.Linear(frame, value.g);
@@ -440,7 +440,7 @@ namespace Hai.FestraGenerator.Scripts.Editor.Internal.CgeAac
             return this;
         }
 
-        public CgeAacFlSettingKeyframesColor Constant(int frame, Color value)
+        public FestraAacFlSettingKeyframesColor Constant(int frame, Color value)
         {
             _r.Constant(frame, value.r);
             _g.Constant(frame, value.g);
@@ -451,7 +451,7 @@ namespace Hai.FestraGenerator.Scripts.Editor.Internal.CgeAac
         }
     }
 
-    public enum CgeAacFlUnit
+    public enum FestraAacFlUnit
     {
         Frames, Seconds
     }

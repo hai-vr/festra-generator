@@ -2,28 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor.Animations;
-using static Hai.FestraGenerator.Scripts.Editor.Internal.CgeAac.CgeAacFlConditionSimple;
+using static Hai.FestraGenerator.Scripts.Editor.Internal.FestraAac.FestraAacFlConditionSimple;
 using static UnityEditor.Animations.AnimatorConditionMode;
 
-namespace Hai.FestraGenerator.Scripts.Editor.Internal.CgeAac
+namespace Hai.FestraGenerator.Scripts.Editor.Internal.FestraAac
 {
-    class CgeAacFlConditionSimple : ICgeAacFlCondition
+    class FestraAacFlConditionSimple : IFestraAacFlCondition
     {
-        private readonly Action<CgeAacFlCondition> _action;
+        private readonly Action<FestraAacFlCondition> _action;
 
-        public CgeAacFlConditionSimple(Action<CgeAacFlCondition> action)
+        public FestraAacFlConditionSimple(Action<FestraAacFlCondition> action)
         {
             _action = action;
         }
 
-        public static CgeAacFlConditionSimple Just(Action<CgeAacFlCondition> action)
+        public static FestraAacFlConditionSimple Just(Action<FestraAacFlCondition> action)
         {
-            return new CgeAacFlConditionSimple(action);
+            return new FestraAacFlConditionSimple(action);
         }
 
-        public static CgeAacFlConditionSimple ForEach(string[] subjects, Action<string, CgeAacFlCondition> action)
+        public static FestraAacFlConditionSimple ForEach(string[] subjects, Action<string, FestraAacFlCondition> action)
         {
-            return new CgeAacFlConditionSimple(condition =>
+            return new FestraAacFlConditionSimple(condition =>
             {
                 foreach (var subject in subjects)
                 {
@@ -32,114 +32,114 @@ namespace Hai.FestraGenerator.Scripts.Editor.Internal.CgeAac
             });
         }
 
-        public void ApplyTo(CgeAacFlCondition appender)
+        public void ApplyTo(FestraAacFlCondition appender)
         {
             _action.Invoke(appender);
         }
     }
 
-    public abstract class CgeAacFlParameter
+    public abstract class FestraAacFlParameter
     {
         public string Name { get; }
 
-        protected CgeAacFlParameter(string name)
+        protected FestraAacFlParameter(string name)
         {
             Name = name;
         }
     }
 
-    public class CgeAacFlFloatParameter : CgeAacFlParameter
+    public class FestraAacFlFloatParameter : FestraAacFlParameter
     {
-        internal static CgeAacFlFloatParameter Internally(string name) => new CgeAacFlFloatParameter(name);
-        protected CgeAacFlFloatParameter(string name) : base(name) { }
-        public ICgeAacFlCondition IsGreaterThan(float other) => Just(condition => condition.Add(Name, Greater, other));
-        public ICgeAacFlCondition IsLessThan(float other) => Just(condition => condition.Add(Name, Less, other));
+        internal static FestraAacFlFloatParameter Internally(string name) => new FestraAacFlFloatParameter(name);
+        protected FestraAacFlFloatParameter(string name) : base(name) { }
+        public IFestraAacFlCondition IsGreaterThan(float other) => Just(condition => condition.Add(Name, Greater, other));
+        public IFestraAacFlCondition IsLessThan(float other) => Just(condition => condition.Add(Name, Less, other));
     }
 
-    public class CgeAacFlIntParameter : CgeAacFlParameter
+    public class FestraAacFlIntParameter : FestraAacFlParameter
     {
-        internal static CgeAacFlIntParameter Internally(string name) => new CgeAacFlIntParameter(name);
-        protected CgeAacFlIntParameter(string name) : base(name) { }
-        public ICgeAacFlCondition IsGreaterThan(int other) => Just(condition => condition.Add(Name, Greater, other));
-        public ICgeAacFlCondition IsLessThan(int other) => Just(condition => condition.Add(Name, Less, other));
-        public ICgeAacFlCondition IsEqualTo(int other) => Just(condition => condition.Add(Name, AnimatorConditionMode.Equals, other));
-        public ICgeAacFlCondition IsNotEqualTo(int other) => Just(condition => condition.Add(Name, NotEqual, other));
+        internal static FestraAacFlIntParameter Internally(string name) => new FestraAacFlIntParameter(name);
+        protected FestraAacFlIntParameter(string name) : base(name) { }
+        public IFestraAacFlCondition IsGreaterThan(int other) => Just(condition => condition.Add(Name, Greater, other));
+        public IFestraAacFlCondition IsLessThan(int other) => Just(condition => condition.Add(Name, Less, other));
+        public IFestraAacFlCondition IsEqualTo(int other) => Just(condition => condition.Add(Name, AnimatorConditionMode.Equals, other));
+        public IFestraAacFlCondition IsNotEqualTo(int other) => Just(condition => condition.Add(Name, NotEqual, other));
     }
 
-    public class CgeAacFlEnumIntParameter<TEnum> : CgeAacFlIntParameter where TEnum : Enum
+    public class FestraAacFlEnumIntParameter<TEnum> : FestraAacFlIntParameter where TEnum : Enum
     {
-        internal static CgeAacFlEnumIntParameter<TInEnum> Internally<TInEnum>(string name) where TInEnum : Enum => new CgeAacFlEnumIntParameter<TInEnum>(name);
-        protected CgeAacFlEnumIntParameter(string name) : base(name)
+        internal static FestraAacFlEnumIntParameter<TInEnum> Internally<TInEnum>(string name) where TInEnum : Enum => new FestraAacFlEnumIntParameter<TInEnum>(name);
+        protected FestraAacFlEnumIntParameter(string name) : base(name)
         {
         }
 
-        public ICgeAacFlCondition IsEqualTo(TEnum other) => IsEqualTo((int)(object)other);
-        public ICgeAacFlCondition IsNotEqualTo(TEnum other) => IsNotEqualTo((int)(object)other);
+        public IFestraAacFlCondition IsEqualTo(TEnum other) => IsEqualTo((int)(object)other);
+        public IFestraAacFlCondition IsNotEqualTo(TEnum other) => IsNotEqualTo((int)(object)other);
     }
 
-    public class CgeAacFlBoolParameter : CgeAacFlParameter
+    public class FestraAacFlBoolParameter : FestraAacFlParameter
     {
-        internal static CgeAacFlBoolParameter Internally(string name) => new CgeAacFlBoolParameter(name);
-        protected CgeAacFlBoolParameter(string name) : base(name) { }
-        public ICgeAacFlCondition IsTrue() => Just(condition => condition.Add(Name, If, 0));
-        public ICgeAacFlCondition IsFalse() => Just(condition => condition.Add(Name, IfNot, 0));
-        public ICgeAacFlCondition IsEqualTo(bool other) => Just(condition => condition.Add(Name, other ? If : IfNot, 0));
-        public ICgeAacFlCondition IsNotEqualTo(bool other) => Just(condition => condition.Add(Name, other ? IfNot : If, 0));
+        internal static FestraAacFlBoolParameter Internally(string name) => new FestraAacFlBoolParameter(name);
+        protected FestraAacFlBoolParameter(string name) : base(name) { }
+        public IFestraAacFlCondition IsTrue() => Just(condition => condition.Add(Name, If, 0));
+        public IFestraAacFlCondition IsFalse() => Just(condition => condition.Add(Name, IfNot, 0));
+        public IFestraAacFlCondition IsEqualTo(bool other) => Just(condition => condition.Add(Name, other ? If : IfNot, 0));
+        public IFestraAacFlCondition IsNotEqualTo(bool other) => Just(condition => condition.Add(Name, other ? IfNot : If, 0));
     }
 
-    public class CgeAacFlFloatParameterGroup
+    public class FestraAacFlFloatParameterGroup
     {
-        internal static CgeAacFlFloatParameterGroup Internally(params string[] names) => new CgeAacFlFloatParameterGroup(names);
+        internal static FestraAacFlFloatParameterGroup Internally(params string[] names) => new FestraAacFlFloatParameterGroup(names);
         private readonly string[] _names;
-        private CgeAacFlFloatParameterGroup(params string[] names) { _names = names; }
-        public List<CgeAacFlBoolParameter> ToList() => _names.Select(CgeAacFlBoolParameter.Internally).ToList();
+        private FestraAacFlFloatParameterGroup(params string[] names) { _names = names; }
+        public List<FestraAacFlBoolParameter> ToList() => _names.Select(FestraAacFlBoolParameter.Internally).ToList();
 
-        public ICgeAacFlCondition AreGreaterThan(float other) => ForEach(_names, (name, condition) => condition.Add(name, Greater, other));
-        public ICgeAacFlCondition AreLessThan(float other) => ForEach(_names, (name, condition) => condition.Add(name, Less, other));
+        public IFestraAacFlCondition AreGreaterThan(float other) => ForEach(_names, (name, condition) => condition.Add(name, Greater, other));
+        public IFestraAacFlCondition AreLessThan(float other) => ForEach(_names, (name, condition) => condition.Add(name, Less, other));
     }
 
-    public class CgeAacFlIntParameterGroup
+    public class FestraAacFlIntParameterGroup
     {
-        internal static CgeAacFlIntParameterGroup Internally(params string[] names) => new CgeAacFlIntParameterGroup(names);
+        internal static FestraAacFlIntParameterGroup Internally(params string[] names) => new FestraAacFlIntParameterGroup(names);
         private readonly string[] _names;
-        private CgeAacFlIntParameterGroup(params string[] names) { _names = names; }
-        public List<CgeAacFlBoolParameter> ToList() => _names.Select(CgeAacFlBoolParameter.Internally).ToList();
+        private FestraAacFlIntParameterGroup(params string[] names) { _names = names; }
+        public List<FestraAacFlBoolParameter> ToList() => _names.Select(FestraAacFlBoolParameter.Internally).ToList();
 
-        public ICgeAacFlCondition AreGreaterThan(float other) => ForEach(_names, (name, condition) => condition.Add(name, Greater, other));
-        public ICgeAacFlCondition AreLessThan(float other) => ForEach(_names, (name, condition) => condition.Add(name, Less, other));
-        public ICgeAacFlCondition AreEqualTo(float other) => ForEach(_names, (name, condition) => condition.Add(name, AnimatorConditionMode.Equals, other));
-        public ICgeAacFlCondition AreNotEqualTo(float other) => ForEach(_names, (name, condition) => condition.Add(name, NotEqual, other));
+        public IFestraAacFlCondition AreGreaterThan(float other) => ForEach(_names, (name, condition) => condition.Add(name, Greater, other));
+        public IFestraAacFlCondition AreLessThan(float other) => ForEach(_names, (name, condition) => condition.Add(name, Less, other));
+        public IFestraAacFlCondition AreEqualTo(float other) => ForEach(_names, (name, condition) => condition.Add(name, AnimatorConditionMode.Equals, other));
+        public IFestraAacFlCondition AreNotEqualTo(float other) => ForEach(_names, (name, condition) => condition.Add(name, NotEqual, other));
     }
 
-    public class CgeAacFlBoolParameterGroup
+    public class FestraAacFlBoolParameterGroup
     {
-        internal static CgeAacFlBoolParameterGroup Internally(params string[] names) => new CgeAacFlBoolParameterGroup(names);
+        internal static FestraAacFlBoolParameterGroup Internally(params string[] names) => new FestraAacFlBoolParameterGroup(names);
         private readonly string[] _names;
-        private CgeAacFlBoolParameterGroup(params string[] names) { _names = names; }
-        public List<CgeAacFlBoolParameter> ToList() => _names.Select(CgeAacFlBoolParameter.Internally).ToList();
+        private FestraAacFlBoolParameterGroup(params string[] names) { _names = names; }
+        public List<FestraAacFlBoolParameter> ToList() => _names.Select(FestraAacFlBoolParameter.Internally).ToList();
 
-        public ICgeAacFlCondition AreTrue() => ForEach(_names, (name, condition) => condition.Add(name, If, 0));
-        public ICgeAacFlCondition AreFalse() => ForEach(_names, (name, condition) => condition.Add(name, IfNot, 0));
-        public ICgeAacFlCondition AreEqualTo(bool other) => ForEach(_names, (name, condition) => condition.Add(name, other ? If : IfNot, 0));
+        public IFestraAacFlCondition AreTrue() => ForEach(_names, (name, condition) => condition.Add(name, If, 0));
+        public IFestraAacFlCondition AreFalse() => ForEach(_names, (name, condition) => condition.Add(name, IfNot, 0));
+        public IFestraAacFlCondition AreEqualTo(bool other) => ForEach(_names, (name, condition) => condition.Add(name, other ? If : IfNot, 0));
 
 /// is true when all of the following conditions are met:
 /// <ul>
 /// <li>all of the parameters in the group must be false except for the parameter defined in exceptThisMustBeTrue if it is present in the group.</li>
 /// <li>the parameter defined in exceptThisMustBeTrue must be true.</li>
 /// </ul>
-        public ICgeAacFlCondition AreFalseExcept(CgeAacFlBoolParameter exceptThisMustBeTrue)
+        public IFestraAacFlCondition AreFalseExcept(FestraAacFlBoolParameter exceptThisMustBeTrue)
         {
-            var group = new CgeAacFlBoolParameterGroup(exceptThisMustBeTrue.Name);
+            var group = new FestraAacFlBoolParameterGroup(exceptThisMustBeTrue.Name);
             return AreFalseExcept(group);
         }
 
-        public ICgeAacFlCondition AreFalseExcept(params CgeAacFlBoolParameter[] exceptTheseMustBeTrue)
+        public IFestraAacFlCondition AreFalseExcept(params FestraAacFlBoolParameter[] exceptTheseMustBeTrue)
         {
-            var group = new CgeAacFlBoolParameterGroup(exceptTheseMustBeTrue.Select(parameter => parameter.Name).ToArray());
+            var group = new FestraAacFlBoolParameterGroup(exceptTheseMustBeTrue.Select(parameter => parameter.Name).ToArray());
             return AreFalseExcept(group);
         }
 
-        public ICgeAacFlCondition AreFalseExcept(CgeAacFlBoolParameterGroup exceptTheseMustBeTrue) => Just(condition =>
+        public IFestraAacFlCondition AreFalseExcept(FestraAacFlBoolParameterGroup exceptTheseMustBeTrue) => Just(condition =>
         {
             foreach (var name in _names.Where(name => !exceptTheseMustBeTrue._names.Contains(name)))
             {
@@ -151,19 +151,19 @@ namespace Hai.FestraGenerator.Scripts.Editor.Internal.CgeAac
             }
         });
 
-        public ICgeAacFlCondition AreTrueExcept(CgeAacFlBoolParameter exceptThisMustBeFalse)
+        public IFestraAacFlCondition AreTrueExcept(FestraAacFlBoolParameter exceptThisMustBeFalse)
         {
-            var group = new CgeAacFlBoolParameterGroup(exceptThisMustBeFalse.Name);
+            var group = new FestraAacFlBoolParameterGroup(exceptThisMustBeFalse.Name);
             return AreTrueExcept(group);
         }
 
-        public ICgeAacFlCondition AreTrueExcept(params CgeAacFlBoolParameter[] exceptTheseMustBeFalse)
+        public IFestraAacFlCondition AreTrueExcept(params FestraAacFlBoolParameter[] exceptTheseMustBeFalse)
         {
-            var group = new CgeAacFlBoolParameterGroup(exceptTheseMustBeFalse.Select(parameter => parameter.Name).ToArray());
+            var group = new FestraAacFlBoolParameterGroup(exceptTheseMustBeFalse.Select(parameter => parameter.Name).ToArray());
             return AreTrueExcept(group);
         }
 
-        public ICgeAacFlCondition AreTrueExcept(CgeAacFlBoolParameterGroup exceptTheseMustBeFalse) => Just(condition =>
+        public IFestraAacFlCondition AreTrueExcept(FestraAacFlBoolParameterGroup exceptTheseMustBeFalse) => Just(condition =>
         {
             foreach (var name in _names.Where(name => !exceptTheseMustBeFalse._names.Contains(name)))
             {
@@ -175,42 +175,42 @@ namespace Hai.FestraGenerator.Scripts.Editor.Internal.CgeAac
             }
         });
 
-        public ICgeAacFlOrCondition IsAnyTrue()
+        public IFestraAacFlOrCondition IsAnyTrue()
         {
             return IsAnyEqualTo(true);
         }
 
-        public ICgeAacFlOrCondition IsAnyFalse()
+        public IFestraAacFlOrCondition IsAnyFalse()
         {
             return IsAnyEqualTo(false);
         }
 
-        private ICgeAacFlOrCondition IsAnyEqualTo(bool value)
+        private IFestraAacFlOrCondition IsAnyEqualTo(bool value)
         {
-            return new CgeAacFlBoolParameterIsAnyOrCondition(_names, value);
+            return new FestraAacFlBoolParameterIsAnyOrCondition(_names, value);
         }
     }
 
-    internal class CgeAacFlBoolParameterIsAnyOrCondition : ICgeAacFlOrCondition
+    internal class FestraAacFlBoolParameterIsAnyOrCondition : IFestraAacFlOrCondition
     {
         private readonly string[] _names;
         private readonly bool _value;
 
-        public CgeAacFlBoolParameterIsAnyOrCondition(string[] names, bool value)
+        public FestraAacFlBoolParameterIsAnyOrCondition(string[] names, bool value)
         {
             _names = names;
             _value = value;
         }
 
-        public List<CgeAacFlTransitionContinuation> ApplyTo(CgeAacFlNewTransitionContinuation firstContinuation)
+        public List<FestraAacFlTransitionContinuation> ApplyTo(FestraAacFlNewTransitionContinuation firstContinuation)
         {
-            var pendingContinuations = new List<CgeAacFlTransitionContinuation>();
+            var pendingContinuations = new List<FestraAacFlTransitionContinuation>();
 
             var newContinuation = firstContinuation;
             for (var index = 0; index < _names.Length; index++)
             {
                 var name = _names[index];
-                var pendingContinuation = newContinuation.When(CgeAacFlBoolParameter.Internally(name).IsEqualTo(_value));
+                var pendingContinuation = newContinuation.When(FestraAacFlBoolParameter.Internally(name).IsEqualTo(_value));
                 pendingContinuations.Add(pendingContinuation);
                 if (index < _names.Length - 1)
                 {

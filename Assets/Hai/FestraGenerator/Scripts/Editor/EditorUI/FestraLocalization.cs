@@ -8,19 +8,19 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 
-namespace Hai.ComboGesture.Scripts.Editor.EditorUI
+namespace Hai.FestraGenerator.Scripts.Editor.EditorUI
 {
-    public class CgeLocalization
+    public class FestraLocalization
     {
-        private const string Prefix = "cge.";
+        private const string Prefix = "festra.";
         private const string Suffix = ".json";
-        private static readonly CgeLocalization Myself = new CgeLocalization();
+        private static readonly FestraLocalization Myself = new FestraLocalization();
         private Dictionary<string, Dictionary<string, string>> _localizations;
         private Dictionary<string, string> _activeLocaleNullable;
         private bool _isEnglish;
         private static int _lang;
 
-        private CgeLocalization()
+        private FestraLocalization()
         {
             ReloadLocalizationsInternal();
         }
@@ -43,7 +43,7 @@ namespace Hai.ComboGesture.Scripts.Editor.EditorUI
 
         private void ReloadLocalizationsInternal()
         {
-            var localizationGuids = AssetDatabase.FindAssets("", new[] {"Assets/Hai/ComboGesture/Scripts/Editor/EditorUI/Locale"});
+            var localizationGuids = AssetDatabase.FindAssets("", new[] {"Assets/Hai/Festra/Scripts/Editor/EditorUI/Locale"});
             _localizations = localizationGuids
                 .Select(AssetDatabase.GUIDToAssetPath)
                 .Where(path =>

@@ -1,10 +1,10 @@
 ﻿using Hai.FestraGenerator.Scripts.Components;
 using UnityEditor;
 
-namespace Hai.ComboGesture.Scripts.Editor.EditorUI
+namespace Hai.FestraGenerator.Scripts.Editor.EditorUI
 {
-    [CustomEditor(typeof(ComboGestureFaceTracking))]
-    public class ComboGestureFaceTrackingEditor : UnityEditor.Editor
+    [CustomEditor(typeof(FestraAvatar))]
+    public class FestraAvatarEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()
         {

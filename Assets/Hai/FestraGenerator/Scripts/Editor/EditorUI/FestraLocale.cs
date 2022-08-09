@@ -4,204 +4,203 @@
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using Hai.ComboGesture.Scripts.Editor.EditorUI;
 
 namespace Hai.FestraGenerator.Scripts.Editor.EditorUI
 {
-    public class CgeLocale
+    public class FestraLocale
     {
-        private static string CGE_Documentation_URL => LocalizeOrElse("CGE_Documentation_URL", CgeLocaleDefaults.CGE_Documentation_URL);
-        private static string CGE_PermutationsDocumentation_URL => LocalizeOrElse("CGE_PermutationsDocumentation_URL", CgeLocaleDefaults.CGE_PermutationsDocumentation_URL);
-        private static string CGE_IntegratorDocumentation_URL => LocalizeOrElse("CGE_IntegratorDocumentation_URL", CgeLocaleDefaults.CGE_IntegratorDocumentation_URL);
+        private static string FESTRA_Documentation_URL => LocalizeOrElse("FESTRA_Documentation_URL", FestraLocaleDefaults.FESTRA_Documentation_URL);
+        private static string FESTRA_PermutationsDocumentation_URL => LocalizeOrElse("FESTRA_PermutationsDocumentation_URL", FestraLocaleDefaults.FESTRA_PermutationsDocumentation_URL);
+        private static string FESTRA_IntegratorDocumentation_URL => LocalizeOrElse("FESTRA_IntegratorDocumentation_URL", FestraLocaleDefaults.FESTRA_IntegratorDocumentation_URL);
         // 1.4
-        internal static string CGEE_Open_editor => LocalizeOrElse("CGEE_Open_editor", CgeLocaleDefaults.CGEE_Open_editor);
-        internal static string CGEE_Additional_editors => LocalizeOrElse("CGEE_Additional_editors", CgeLocaleDefaults.CGEE_Additional_editors);
-        internal static string CGEE_All_combos => LocalizeOrElse("CGEE_All_combos", CgeLocaleDefaults.CGEE_All_combos);
-        internal static string CGEE_Analog_Fist => LocalizeOrElse("CGEE_Analog_Fist", CgeLocaleDefaults.CGEE_Analog_Fist);
-        internal static string CGEE_Combine_expressions => LocalizeOrElse("CGEE_Combine_expressions", CgeLocaleDefaults.CGEE_Combine_expressions);
-        internal static string CGEE_Combos => LocalizeOrElse("CGEE_Combos", CgeLocaleDefaults.CGEE_Combos);
-        internal static string CGEE_Complete_view => LocalizeOrElse("CGEE_Complete_view", CgeLocaleDefaults.CGEE_Complete_view);
-        internal static string CGEE_Create_blend_trees => LocalizeOrElse("CGEE_Create_blend_trees", CgeLocaleDefaults.CGEE_Create_blend_trees);
-        internal static string CGEE_Manipulate_trees => LocalizeOrElse("CGEE_Manipulate_trees", CgeLocaleDefaults.CGEE_Manipulate_trees);
-        internal static string CGEE_Other_options => LocalizeOrElse("CGEE_Other_options", CgeLocaleDefaults.CGEE_Other_options);
-        internal static string CGEE_Permutations => LocalizeOrElse("CGEE_Permutations", CgeLocaleDefaults.CGEE_Permutations);
-        internal static string CGEE_Prevent_eyes_blinking => LocalizeOrElse("CGEE_Prevent_eyes_blinking", CgeLocaleDefaults.CGEE_Prevent_eyes_blinking);
-        internal static string CGEE_Set_face_expressions => LocalizeOrElse("CGEE_Set_face_expressions", CgeLocaleDefaults.CGEE_Set_face_expressions);
-        internal static string CGEE_Simplified_view => LocalizeOrElse("CGEE_Simplified_view", CgeLocaleDefaults.CGEE_Simplified_view);
-        internal static string CGEE_Singles => LocalizeOrElse("CGEE_Singles", CgeLocaleDefaults.CGEE_Singles);
-        internal static string CGEE_Tutorials => LocalizeOrElse("CGEE_Tutorials", CgeLocaleDefaults.CGEE_Tutorials);
-        internal static string CGEE_View_blend_trees => LocalizeOrElse("CGEE_View_blend_trees", CgeLocaleDefaults.CGEE_View_blend_trees);
-        internal static string CGEE_Open_Documentation_and_tutorials => LocalizeOrElse("CGEE_Open_Documentation_and_tutorials", CgeLocaleDefaults.CGEE_Open_Documentation_and_tutorials);
-        internal static string CGEE_PermutationsIntro => LocalizeOrElse("CGEE_PermutationsIntro", CgeLocaleDefaults.CGEE_PermutationsIntro);
-        internal static string CGEE_ConfirmUsePermutations => LocalizeOrElse("CGEE_ConfirmUsePermutations", CgeLocaleDefaults.CGEE_ConfirmUsePermutations);
-        internal static string CGEE_Enable_permutations_for_this_Activity => LocalizeOrElse("CGEE_Enable_permutations_for_this_Activity", CgeLocaleDefaults.CGEE_Enable_permutations_for_this_Activity);
-        internal static string CGEE_PermutationsFootnote => LocalizeOrElse("CGEE_PermutationsFootnote", CgeLocaleDefaults.CGEE_PermutationsFootnote);
-        internal static string CGEE_GeneratePreview => LocalizeOrElse("CGEE_GeneratePreview", CgeLocaleDefaults.CGEE_GeneratePreview);
-        internal static string CGEE_SetupPreview => LocalizeOrElse("CGEE_SetupPreview", CgeLocaleDefaults.CGEE_SetupPreview);
-        internal static string CGEE_SelectFaceExpressionsWithBothEyesClosed => LocalizeOrElse("CGEE_SelectFaceExpressionsWithBothEyesClosed", CgeLocaleDefaults.CGEE_SelectFaceExpressionsWithBothEyesClosed);
-        internal static string CGEE_Blinking => LocalizeOrElse("CGEE_Blinking", CgeLocaleDefaults.CGEE_Blinking);
-        internal static string CGEE_Transition_duration_in_seconds => LocalizeOrElse("CGEE_Transition_duration_in_seconds", CgeLocaleDefaults.CGEE_Transition_duration_in_seconds);
-        internal static string CGEE_IncompletePreviewSetup => LocalizeOrElse("CGEE_IncompletePreviewSetup", CgeLocaleDefaults.CGEE_IncompletePreviewSetup);
-        internal static string CGEE_Automatically_setup_preview => LocalizeOrElse("CGEE_Automatically_setup_preview", CgeLocaleDefaults.CGEE_Automatically_setup_preview);
-        internal static string CGEE_AutoSetupReused => LocalizeOrElse("CGEE_AutoSetupReused", CgeLocaleDefaults.CGEE_AutoSetupReused);
-        internal static string CGEE_AutoSetupNoActiveAvatarDescriptor => LocalizeOrElse("CGEE_AutoSetupNoActiveAvatarDescriptor", CgeLocaleDefaults.CGEE_AutoSetupNoActiveAvatarDescriptor);
-        internal static string CGEE_AutoSetupCreated => LocalizeOrElse("CGEE_AutoSetupCreated", CgeLocaleDefaults.CGEE_AutoSetupCreated);
-        internal static string CGEE_Transition_duration => LocalizeOrElse("CGEE_Transition_duration", CgeLocaleDefaults.CGEE_Transition_duration);
-        internal static string CGEE_Preview_setup => LocalizeOrElse("CGEE_Preview_setup", CgeLocaleDefaults.CGEE_Preview_setup);
-        internal static string CGEE_Generate_missing_previews => LocalizeOrElse("CGEE_Generate_missing_previews", CgeLocaleDefaults.CGEE_Generate_missing_previews);
-        internal static string CGEE_Regenerate_all_previews => LocalizeOrElse("CGEE_Regenerate_all_previews", CgeLocaleDefaults.CGEE_Regenerate_all_previews);
-        internal static string CGEE_Stop_generating_previews => LocalizeOrElse("CGEE_Stop_generating_previews", CgeLocaleDefaults.CGEE_Stop_generating_previews);
-        internal static string CGEE_ExplainFourDirections => LocalizeOrElse("CGEE_ExplainFourDirections", CgeLocaleDefaults.CGEE_ExplainFourDirections);
-        internal static string CGEE_ExplainEightDirections => LocalizeOrElse("CGEE_ExplainEightDirections", CgeLocaleDefaults.CGEE_ExplainEightDirections);
-        internal static string CGEE_ExplainSixDirectionsPointingForward => LocalizeOrElse("CGEE_ExplainSixDirectionsPointingForward", CgeLocaleDefaults.CGEE_ExplainSixDirectionsPointingForward);
-        internal static string CGEE_ExplainSixDirectionsPointingSideways => LocalizeOrElse("CGEE_ExplainSixDirectionsPointingSideways", CgeLocaleDefaults.CGEE_ExplainSixDirectionsPointingSideways);
-        internal static string CGEE_ExplainSingleAnalogFistWithHairTrigger => LocalizeOrElse("CGEE_ExplainSingleAnalogFistWithHairTrigger", CgeLocaleDefaults.CGEE_ExplainSingleAnalogFistWithHairTrigger);
-        internal static string CGEE_ExplainSingleAnalogFistAndTwoDirections => LocalizeOrElse("CGEE_ExplainSingleAnalogFistAndTwoDirections", CgeLocaleDefaults.CGEE_ExplainSingleAnalogFistAndTwoDirections);
-        internal static string CGEE_ExplainDualAnalogFist => LocalizeOrElse("CGEE_ExplainDualAnalogFist", CgeLocaleDefaults.CGEE_ExplainDualAnalogFist);
-        internal static string CGEE_Create_a_new_blend_tree => LocalizeOrElse("CGEE_Create_a_new_blend_tree", CgeLocaleDefaults.CGEE_Create_a_new_blend_tree);
-        internal static string CGEE_Blend_tree_asset => LocalizeOrElse("CGEE_Blend_tree_asset", CgeLocaleDefaults.CGEE_Blend_tree_asset);
+        internal static string FESTRAE_Open_editor => LocalizeOrElse("FESTRAE_Open_editor", FestraLocaleDefaults.FESTRAE_Open_editor);
+        internal static string FESTRAE_Additional_editors => LocalizeOrElse("FESTRAE_Additional_editors", FestraLocaleDefaults.FESTRAE_Additional_editors);
+        internal static string FESTRAE_All_combos => LocalizeOrElse("FESTRAE_All_combos", FestraLocaleDefaults.FESTRAE_All_combos);
+        internal static string FESTRAE_Analog_Fist => LocalizeOrElse("FESTRAE_Analog_Fist", FestraLocaleDefaults.FESTRAE_Analog_Fist);
+        internal static string FESTRAE_Combine_expressions => LocalizeOrElse("FESTRAE_Combine_expressions", FestraLocaleDefaults.FESTRAE_Combine_expressions);
+        internal static string FESTRAE_Combos => LocalizeOrElse("FESTRAE_Combos", FestraLocaleDefaults.FESTRAE_Combos);
+        internal static string FESTRAE_Complete_view => LocalizeOrElse("FESTRAE_Complete_view", FestraLocaleDefaults.FESTRAE_Complete_view);
+        internal static string FESTRAE_Create_blend_trees => LocalizeOrElse("FESTRAE_Create_blend_trees", FestraLocaleDefaults.FESTRAE_Create_blend_trees);
+        internal static string FESTRAE_Manipulate_trees => LocalizeOrElse("FESTRAE_Manipulate_trees", FestraLocaleDefaults.FESTRAE_Manipulate_trees);
+        internal static string FESTRAE_Other_options => LocalizeOrElse("FESTRAE_Other_options", FestraLocaleDefaults.FESTRAE_Other_options);
+        internal static string FESTRAE_Permutations => LocalizeOrElse("FESTRAE_Permutations", FestraLocaleDefaults.FESTRAE_Permutations);
+        internal static string FESTRAE_Prevent_eyes_blinking => LocalizeOrElse("FESTRAE_Prevent_eyes_blinking", FestraLocaleDefaults.FESTRAE_Prevent_eyes_blinking);
+        internal static string FESTRAE_Set_face_expressions => LocalizeOrElse("FESTRAE_Set_face_expressions", FestraLocaleDefaults.FESTRAE_Set_face_expressions);
+        internal static string FESTRAE_Simplified_view => LocalizeOrElse("FESTRAE_Simplified_view", FestraLocaleDefaults.FESTRAE_Simplified_view);
+        internal static string FESTRAE_Singles => LocalizeOrElse("FESTRAE_Singles", FestraLocaleDefaults.FESTRAE_Singles);
+        internal static string FESTRAE_Tutorials => LocalizeOrElse("FESTRAE_Tutorials", FestraLocaleDefaults.FESTRAE_Tutorials);
+        internal static string FESTRAE_View_blend_trees => LocalizeOrElse("FESTRAE_View_blend_trees", FestraLocaleDefaults.FESTRAE_View_blend_trees);
+        internal static string FESTRAE_Open_Documentation_and_tutorials => LocalizeOrElse("FESTRAE_Open_Documentation_and_tutorials", FestraLocaleDefaults.FESTRAE_Open_Documentation_and_tutorials);
+        internal static string FESTRAE_PermutationsIntro => LocalizeOrElse("FESTRAE_PermutationsIntro", FestraLocaleDefaults.FESTRAE_PermutationsIntro);
+        internal static string FESTRAE_ConfirmUsePermutations => LocalizeOrElse("FESTRAE_ConfirmUsePermutations", FestraLocaleDefaults.FESTRAE_ConfirmUsePermutations);
+        internal static string FESTRAE_Enable_permutations_for_this_Activity => LocalizeOrElse("FESTRAE_Enable_permutations_for_this_Activity", FestraLocaleDefaults.FESTRAE_Enable_permutations_for_this_Activity);
+        internal static string FESTRAE_PermutationsFootnote => LocalizeOrElse("FESTRAE_PermutationsFootnote", FestraLocaleDefaults.FESTRAE_PermutationsFootnote);
+        internal static string FESTRAE_GeneratePreview => LocalizeOrElse("FESTRAE_GeneratePreview", FestraLocaleDefaults.FESTRAE_GeneratePreview);
+        internal static string FESTRAE_SetupPreview => LocalizeOrElse("FESTRAE_SetupPreview", FestraLocaleDefaults.FESTRAE_SetupPreview);
+        internal static string FESTRAE_SelectFaceExpressionsWithBothEyesClosed => LocalizeOrElse("FESTRAE_SelectFaceExpressionsWithBothEyesClosed", FestraLocaleDefaults.FESTRAE_SelectFaceExpressionsWithBothEyesClosed);
+        internal static string FESTRAE_Blinking => LocalizeOrElse("FESTRAE_Blinking", FestraLocaleDefaults.FESTRAE_Blinking);
+        internal static string FESTRAE_Transition_duration_in_seconds => LocalizeOrElse("FESTRAE_Transition_duration_in_seconds", FestraLocaleDefaults.FESTRAE_Transition_duration_in_seconds);
+        internal static string FESTRAE_IncompletePreviewSetup => LocalizeOrElse("FESTRAE_IncompletePreviewSetup", FestraLocaleDefaults.FESTRAE_IncompletePreviewSetup);
+        internal static string FESTRAE_Automatically_setup_preview => LocalizeOrElse("FESTRAE_Automatically_setup_preview", FestraLocaleDefaults.FESTRAE_Automatically_setup_preview);
+        internal static string FESTRAE_AutoSetupReused => LocalizeOrElse("FESTRAE_AutoSetupReused", FestraLocaleDefaults.FESTRAE_AutoSetupReused);
+        internal static string FESTRAE_AutoSetupNoActiveAvatarDescriptor => LocalizeOrElse("FESTRAE_AutoSetupNoActiveAvatarDescriptor", FestraLocaleDefaults.FESTRAE_AutoSetupNoActiveAvatarDescriptor);
+        internal static string FESTRAE_AutoSetupCreated => LocalizeOrElse("FESTRAE_AutoSetupCreated", FestraLocaleDefaults.FESTRAE_AutoSetupCreated);
+        internal static string FESTRAE_Transition_duration => LocalizeOrElse("FESTRAE_Transition_duration", FestraLocaleDefaults.FESTRAE_Transition_duration);
+        internal static string FESTRAE_Preview_setup => LocalizeOrElse("FESTRAE_Preview_setup", FestraLocaleDefaults.FESTRAE_Preview_setup);
+        internal static string FESTRAE_Generate_missing_previews => LocalizeOrElse("FESTRAE_Generate_missing_previews", FestraLocaleDefaults.FESTRAE_Generate_missing_previews);
+        internal static string FESTRAE_Regenerate_all_previews => LocalizeOrElse("FESTRAE_Regenerate_all_previews", FestraLocaleDefaults.FESTRAE_Regenerate_all_previews);
+        internal static string FESTRAE_Stop_generating_previews => LocalizeOrElse("FESTRAE_Stop_generating_previews", FestraLocaleDefaults.FESTRAE_Stop_generating_previews);
+        internal static string FESTRAE_ExplainFourDirections => LocalizeOrElse("FESTRAE_ExplainFourDirections", FestraLocaleDefaults.FESTRAE_ExplainFourDirections);
+        internal static string FESTRAE_ExplainEightDirections => LocalizeOrElse("FESTRAE_ExplainEightDirections", FestraLocaleDefaults.FESTRAE_ExplainEightDirections);
+        internal static string FESTRAE_ExplainSixDirectionsPointingForward => LocalizeOrElse("FESTRAE_ExplainSixDirectionsPointingForward", FestraLocaleDefaults.FESTRAE_ExplainSixDirectionsPointingForward);
+        internal static string FESTRAE_ExplainSixDirectionsPointingSideways => LocalizeOrElse("FESTRAE_ExplainSixDirectionsPointingSideways", FestraLocaleDefaults.FESTRAE_ExplainSixDirectionsPointingSideways);
+        internal static string FESTRAE_ExplainSingleAnalogFistWithHairTrigger => LocalizeOrElse("FESTRAE_ExplainSingleAnalogFistWithHairTrigger", FestraLocaleDefaults.FESTRAE_ExplainSingleAnalogFistWithHairTrigger);
+        internal static string FESTRAE_ExplainSingleAnalogFistAndTwoDirections => LocalizeOrElse("FESTRAE_ExplainSingleAnalogFistAndTwoDirections", FestraLocaleDefaults.FESTRAE_ExplainSingleAnalogFistAndTwoDirections);
+        internal static string FESTRAE_ExplainDualAnalogFist => LocalizeOrElse("FESTRAE_ExplainDualAnalogFist", FestraLocaleDefaults.FESTRAE_ExplainDualAnalogFist);
+        internal static string FESTRAE_Create_a_new_blend_tree => LocalizeOrElse("FESTRAE_Create_a_new_blend_tree", FestraLocaleDefaults.FESTRAE_Create_a_new_blend_tree);
+        internal static string FESTRAE_Blend_tree_asset => LocalizeOrElse("FESTRAE_Blend_tree_asset", FestraLocaleDefaults.FESTRAE_Blend_tree_asset);
         //
-        internal static string CGEC_Documentation_and_tutorials => LocalizeOrElse("CGEC_Documentation_and_tutorials", CgeLocaleDefaults.CGEC_Documentation_and_tutorials);
-        internal static string CGEC_BackupFX => LocalizeOrElse("CGEC_BackupFX", CgeLocaleDefaults.CGEC_BackupFX);
-        internal static string CGEC_FX_Animator_Controller => LocalizeOrElse("CGEC_FX_Animator_Controller", CgeLocaleDefaults.CGEC_FX_Animator_Controller);
-        internal static string CGEC_FX_Playable_Layer => LocalizeOrElse("CGEC_FX_Playable_Layer", CgeLocaleDefaults.CGEC_FX_Playable_Layer);
-        internal static string CGEC_Gesture_Playable_Layer => LocalizeOrElse("CGEC_Gesture_Playable_Layer", CgeLocaleDefaults.CGEC_Gesture_Playable_Layer);
-        internal static string CGEC_Parameter_Mode => LocalizeOrElse("CGEC_Parameter_Mode", CgeLocaleDefaults.CGEC_Parameter_Mode);
-        internal static string CGEC_Parameter_Name => LocalizeOrElse("CGEC_Parameter_Name", CgeLocaleDefaults.CGEC_Parameter_Name);
-        internal static string CGEC_Parameter_Value => LocalizeOrElse("CGEC_Parameter_Value", CgeLocaleDefaults.CGEC_Parameter_Value);
-        internal static string CGEC_Mood_sets => LocalizeOrElse("CGEC_Mood_sets", CgeLocaleDefaults.CGEC_Mood_sets);
-        internal static string CGEC_HelpExpressionParameterOptimize => LocalizeOrElse("CGEC_HelpExpressionParameterOptimize", CgeLocaleDefaults.CGEC_HelpExpressionParameterOptimize);
-        internal static string CGEC_WarnValuesOverlap => LocalizeOrElse("CGEC_WarnValuesOverlap", CgeLocaleDefaults.CGEC_WarnValuesOverlap);
-        internal static string CGEC_WarnNamesOverlap => LocalizeOrElse("CGEC_WarnNamesOverlap", CgeLocaleDefaults.CGEC_WarnNamesOverlap);
-        internal static string CGEC_WarnNoBlendTree => LocalizeOrElse("CGEC_WarnNoBlendTree", CgeLocaleDefaults.CGEC_WarnNoBlendTree);
-        internal static string CGEC_WarnNoActivity => LocalizeOrElse("CGEC_WarnNoActivity", CgeLocaleDefaults.CGEC_WarnNoActivity);
-        internal static string CGEC_HelpWhenAllParameterNamesDefined => LocalizeOrElse("CGEC_HelpWhenAllParameterNamesDefined", CgeLocaleDefaults.CGEC_HelpWhenAllParameterNamesDefined);
-        internal static string CGEC_HintDefaultMood => LocalizeOrElse("CGEC_HintDefaultMood", CgeLocaleDefaults.CGEC_HintDefaultMood);
-        internal static string CGEC_GestureWeight_correction => LocalizeOrElse("CGEC_GestureWeight_correction", CgeLocaleDefaults.CGEC_GestureWeight_correction);
-        internal static string CGEC_Avatar_descriptor => LocalizeOrElse("CGEC_Avatar_descriptor", CgeLocaleDefaults.CGEC_Avatar_descriptor);
-        internal static string CGEC_Support_for_other_transforms => LocalizeOrElse("CGEC_Support_for_other_transforms", CgeLocaleDefaults.CGEC_Support_for_other_transforms);
-        internal static string CGEC_Gesture_playable_layer_support => LocalizeOrElse("CGEC_Gesture_playable_layer_support", CgeLocaleDefaults.CGEC_Gesture_playable_layer_support);
-        internal static string CGEC_BackupGesture => LocalizeOrElse("CGEC_BackupGesture", CgeLocaleDefaults.CGEC_BackupGesture);
-        internal static string CGEC_Gesture_Animator_Controller => LocalizeOrElse("CGEC_Gesture_Animator_Controller", CgeLocaleDefaults.CGEC_Gesture_Animator_Controller);
-        internal static string CGEC_MusclesUnsupported => LocalizeOrElse("CGEC_MusclesUnsupported", CgeLocaleDefaults.CGEC_MusclesUnsupported);
-        internal static string CGEC_Synchronization => LocalizeOrElse("CGEC_Synchronization", CgeLocaleDefaults.CGEC_Synchronization);
-        internal static string CGEC_Synchronize_Animator_FX_and_Gesture_layers => LocalizeOrElse("CGEC_Synchronize_Animator_FX_and_Gesture_layers", CgeLocaleDefaults.CGEC_Synchronize_Animator_FX_and_Gesture_layers);
-        internal static string CGEC_Synchronize_Animator_FX_layers => LocalizeOrElse("CGEC_Synchronize_Animator_FX_layers", CgeLocaleDefaults.CGEC_Synchronize_Animator_FX_layers);
-        internal static string CGEC_SynchronizationConditionsV2 => LocalizeOrElse("CGEC_SynchronizationConditionsV2", CgeLocaleDefaults.CGEC_SynchronizationConditionsV2);
-        internal static string CGEC_Asset_generation => LocalizeOrElse("CGEC_Asset_generation", CgeLocaleDefaults.CGEC_Asset_generation);
-        internal static string CGEC_Asset_container => LocalizeOrElse("CGEC_Asset_container", CgeLocaleDefaults.CGEC_Asset_container);
-        internal static string CGEC_FX_Playable_Mode => LocalizeOrElse("CGEC_FX_Playable_Mode", CgeLocaleDefaults.CGEC_FX_Playable_Mode);
-        internal static string CGEC_WarnCautiousWriteDefaultsChosenOff => LocalizeOrElse("CGEC_WarnCautiousWriteDefaultsChosenOff", CgeLocaleDefaults.CGEC_WarnCautiousWriteDefaultsChosenOff);
-        internal static string CGEC_WarnWriteDefaultsChosenOff => LocalizeOrElse("CGEC_WarnWriteDefaultsChosenOff", CgeLocaleDefaults.CGEC_WarnWriteDefaultsChosenOff);
-        internal static string CGEC_AndMoreOnly15FirstResults => LocalizeOrElse("CGEC_AndMoreOnly15FirstResults", CgeLocaleDefaults.CGEC_AndMoreOnly15FirstResults);
-        internal static string CGEC_WarnWriteDefaultsOnStatesFound => LocalizeOrElse("CGEC_WarnWriteDefaultsOnStatesFound", CgeLocaleDefaults.CGEC_WarnWriteDefaultsOnStatesFound);
-        internal static string CGEC_Gesture_Playable_Mode => LocalizeOrElse("CGEC_Gesture_Playable_Mode", CgeLocaleDefaults.CGEC_Gesture_Playable_Mode);
-        internal static string CGEC_Other_tweaks => LocalizeOrElse("CGEC_Other_tweaks", CgeLocaleDefaults.CGEC_Other_tweaks);
-        internal static string CGEC_Analog_fist_blinking_threshold => LocalizeOrElse("CGEC_Analog_fist_blinking_threshold", CgeLocaleDefaults.CGEC_Analog_fist_blinking_threshold);
-        internal static string CGEC_AnalogFist_Popup => LocalizeOrElse("CGEC_AnalogFist_Popup", CgeLocaleDefaults.CGEC_AnalogFist_Popup);
-        internal static string CGEC_Advanced => LocalizeOrElse("CGEC_Advanced", CgeLocaleDefaults.CGEC_Advanced);
-        internal static string CGEC_WarnNoActivityName => LocalizeOrElse("CGEC_WarnNoActivityName", CgeLocaleDefaults.CGEC_WarnNoActivityName);
-        internal static string CGEC_Capture_Transforms_Mode => LocalizeOrElse("CGEC_Capture_Transforms_Mode", CgeLocaleDefaults.CGEC_Capture_Transforms_Mode);
-        internal static string CGEC_MissingFxMask => LocalizeOrElse("CGEC_MissingFxMask", CgeLocaleDefaults.CGEC_MissingFxMask);
-        internal static string CGEC_Add_missing_masks => LocalizeOrElse("CGEC_Add_missing_masks", CgeLocaleDefaults.CGEC_Add_missing_masks);
-        internal static string CGEC_Remove_applied_masks => LocalizeOrElse("CGEC_Remove_applied_masks", CgeLocaleDefaults.CGEC_Remove_applied_masks);
-        internal static string CGEC_Unbind_Asset_container => LocalizeOrElse("CGEC_Unbind_Asset_container", CgeLocaleDefaults.CGEC_Unbind_Asset_container);
+        internal static string FESTRAC_Documentation_and_tutorials => LocalizeOrElse("FESTRAC_Documentation_and_tutorials", FestraLocaleDefaults.FESTRAC_Documentation_and_tutorials);
+        internal static string FESTRAC_BackupFX => LocalizeOrElse("FESTRAC_BackupFX", FestraLocaleDefaults.FESTRAC_BackupFX);
+        internal static string FESTRAC_FX_Animator_Controller => LocalizeOrElse("FESTRAC_FX_Animator_Controller", FestraLocaleDefaults.FESTRAC_FX_Animator_Controller);
+        internal static string FESTRAC_FX_Playable_Layer => LocalizeOrElse("FESTRAC_FX_Playable_Layer", FestraLocaleDefaults.FESTRAC_FX_Playable_Layer);
+        internal static string FESTRAC_Gesture_Playable_Layer => LocalizeOrElse("FESTRAC_Gesture_Playable_Layer", FestraLocaleDefaults.FESTRAC_Gesture_Playable_Layer);
+        internal static string FESTRAC_Parameter_Mode => LocalizeOrElse("FESTRAC_Parameter_Mode", FestraLocaleDefaults.FESTRAC_Parameter_Mode);
+        internal static string FESTRAC_Parameter_Name => LocalizeOrElse("FESTRAC_Parameter_Name", FestraLocaleDefaults.FESTRAC_Parameter_Name);
+        internal static string FESTRAC_Parameter_Value => LocalizeOrElse("FESTRAC_Parameter_Value", FestraLocaleDefaults.FESTRAC_Parameter_Value);
+        internal static string FESTRAC_Mood_sets => LocalizeOrElse("FESTRAC_Mood_sets", FestraLocaleDefaults.FESTRAC_Mood_sets);
+        internal static string FESTRAC_HelpExpressionParameterOptimize => LocalizeOrElse("FESTRAC_HelpExpressionParameterOptimize", FestraLocaleDefaults.FESTRAC_HelpExpressionParameterOptimize);
+        internal static string FESTRAC_WarnValuesOverlap => LocalizeOrElse("FESTRAC_WarnValuesOverlap", FestraLocaleDefaults.FESTRAC_WarnValuesOverlap);
+        internal static string FESTRAC_WarnNamesOverlap => LocalizeOrElse("FESTRAC_WarnNamesOverlap", FestraLocaleDefaults.FESTRAC_WarnNamesOverlap);
+        internal static string FESTRAC_WarnNoBlendTree => LocalizeOrElse("FESTRAC_WarnNoBlendTree", FestraLocaleDefaults.FESTRAC_WarnNoBlendTree);
+        internal static string FESTRAC_WarnNoActivity => LocalizeOrElse("FESTRAC_WarnNoActivity", FestraLocaleDefaults.FESTRAC_WarnNoActivity);
+        internal static string FESTRAC_HelpWhenAllParameterNamesDefined => LocalizeOrElse("FESTRAC_HelpWhenAllParameterNamesDefined", FestraLocaleDefaults.FESTRAC_HelpWhenAllParameterNamesDefined);
+        internal static string FESTRAC_HintDefaultMood => LocalizeOrElse("FESTRAC_HintDefaultMood", FestraLocaleDefaults.FESTRAC_HintDefaultMood);
+        internal static string FESTRAC_GestureWeight_correction => LocalizeOrElse("FESTRAC_GestureWeight_correction", FestraLocaleDefaults.FESTRAC_GestureWeight_correction);
+        internal static string FESTRAC_Avatar_descriptor => LocalizeOrElse("FESTRAC_Avatar_descriptor", FestraLocaleDefaults.FESTRAC_Avatar_descriptor);
+        internal static string FESTRAC_Support_for_other_transforms => LocalizeOrElse("FESTRAC_Support_for_other_transforms", FestraLocaleDefaults.FESTRAC_Support_for_other_transforms);
+        internal static string FESTRAC_Gesture_playable_layer_support => LocalizeOrElse("FESTRAC_Gesture_playable_layer_support", FestraLocaleDefaults.FESTRAC_Gesture_playable_layer_support);
+        internal static string FESTRAC_BackupGesture => LocalizeOrElse("FESTRAC_BackupGesture", FestraLocaleDefaults.FESTRAC_BackupGesture);
+        internal static string FESTRAC_Gesture_Animator_Controller => LocalizeOrElse("FESTRAC_Gesture_Animator_Controller", FestraLocaleDefaults.FESTRAC_Gesture_Animator_Controller);
+        internal static string FESTRAC_MusclesUnsupported => LocalizeOrElse("FESTRAC_MusclesUnsupported", FestraLocaleDefaults.FESTRAC_MusclesUnsupported);
+        internal static string FESTRAC_Synchronization => LocalizeOrElse("FESTRAC_Synchronization", FestraLocaleDefaults.FESTRAC_Synchronization);
+        internal static string FESTRAC_Synchronize_Animator_FX_and_Gesture_layers => LocalizeOrElse("FESTRAC_Synchronize_Animator_FX_and_Gesture_layers", FestraLocaleDefaults.FESTRAC_Synchronize_Animator_FX_and_Gesture_layers);
+        internal static string FESTRAC_Synchronize_Animator_FX_layers => LocalizeOrElse("FESTRAC_Synchronize_Animator_FX_layers", FestraLocaleDefaults.FESTRAC_Synchronize_Animator_FX_layers);
+        internal static string FESTRAC_SynchronizationConditionsV2 => LocalizeOrElse("FESTRAC_SynchronizationConditionsV2", FestraLocaleDefaults.FESTRAC_SynchronizationConditionsV2);
+        internal static string FESTRAC_Asset_generation => LocalizeOrElse("FESTRAC_Asset_generation", FestraLocaleDefaults.FESTRAC_Asset_generation);
+        internal static string FESTRAC_Asset_container => LocalizeOrElse("FESTRAC_Asset_container", FestraLocaleDefaults.FESTRAC_Asset_container);
+        internal static string FESTRAC_FX_Playable_Mode => LocalizeOrElse("FESTRAC_FX_Playable_Mode", FestraLocaleDefaults.FESTRAC_FX_Playable_Mode);
+        internal static string FESTRAC_WarnCautiousWriteDefaultsChosenOff => LocalizeOrElse("FESTRAC_WarnCautiousWriteDefaultsChosenOff", FestraLocaleDefaults.FESTRAC_WarnCautiousWriteDefaultsChosenOff);
+        internal static string FESTRAC_WarnWriteDefaultsChosenOff => LocalizeOrElse("FESTRAC_WarnWriteDefaultsChosenOff", FestraLocaleDefaults.FESTRAC_WarnWriteDefaultsChosenOff);
+        internal static string FESTRAC_AndMoreOnly15FirstResults => LocalizeOrElse("FESTRAC_AndMoreOnly15FirstResults", FestraLocaleDefaults.FESTRAC_AndMoreOnly15FirstResults);
+        internal static string FESTRAC_WarnWriteDefaultsOnStatesFound => LocalizeOrElse("FESTRAC_WarnWriteDefaultsOnStatesFound", FestraLocaleDefaults.FESTRAC_WarnWriteDefaultsOnStatesFound);
+        internal static string FESTRAC_Gesture_Playable_Mode => LocalizeOrElse("FESTRAC_Gesture_Playable_Mode", FestraLocaleDefaults.FESTRAC_Gesture_Playable_Mode);
+        internal static string FESTRAC_Other_tweaks => LocalizeOrElse("FESTRAC_Other_tweaks", FestraLocaleDefaults.FESTRAC_Other_tweaks);
+        internal static string FESTRAC_Analog_fist_blinking_threshold => LocalizeOrElse("FESTRAC_Analog_fist_blinking_threshold", FestraLocaleDefaults.FESTRAC_Analog_fist_blinking_threshold);
+        internal static string FESTRAC_AnalogFist_Popup => LocalizeOrElse("FESTRAC_AnalogFist_Popup", FestraLocaleDefaults.FESTRAC_AnalogFist_Popup);
+        internal static string FESTRAC_Advanced => LocalizeOrElse("FESTRAC_Advanced", FestraLocaleDefaults.FESTRAC_Advanced);
+        internal static string FESTRAC_WarnNoActivityName => LocalizeOrElse("FESTRAC_WarnNoActivityName", FestraLocaleDefaults.FESTRAC_WarnNoActivityName);
+        internal static string FESTRAC_Capture_Transforms_Mode => LocalizeOrElse("FESTRAC_Capture_Transforms_Mode", FestraLocaleDefaults.FESTRAC_Capture_Transforms_Mode);
+        internal static string FESTRAC_MissingFxMask => LocalizeOrElse("FESTRAC_MissingFxMask", FestraLocaleDefaults.FESTRAC_MissingFxMask);
+        internal static string FESTRAC_Add_missing_masks => LocalizeOrElse("FESTRAC_Add_missing_masks", FestraLocaleDefaults.FESTRAC_Add_missing_masks);
+        internal static string FESTRAC_Remove_applied_masks => LocalizeOrElse("FESTRAC_Remove_applied_masks", FestraLocaleDefaults.FESTRAC_Remove_applied_masks);
+        internal static string FESTRAC_Unbind_Asset_container => LocalizeOrElse("FESTRAC_Unbind_Asset_container", FestraLocaleDefaults.FESTRAC_Unbind_Asset_container);
         //
-        internal static string CGEI_Documentation => LocalizeOrElse("CGEI_Documentation", CgeLocaleDefaults.CGEI_Documentation);
-        internal static string CGEI_BackupAnimator => LocalizeOrElse("CGEI_BackupAnimator", CgeLocaleDefaults.CGEI_BackupAnimator);
-        internal static string CGEI_Animator_Controller => LocalizeOrElse("CGEI_Animator_Controller", CgeLocaleDefaults.CGEI_Animator_Controller);
-        internal static string CGEI_Info => LocalizeOrElse("CGEI_Info", CgeLocaleDefaults.CGEI_Info);
-        internal static string CGEI_Synchronize_Animator_layers => LocalizeOrElse("CGEI_Synchronize_Animator_layers", CgeLocaleDefaults.CGEI_Synchronize_Animator_layers);
+        internal static string FESTRAI_Documentation => LocalizeOrElse("FESTRAI_Documentation", FestraLocaleDefaults.FESTRAI_Documentation);
+        internal static string FESTRAI_BackupAnimator => LocalizeOrElse("FESTRAI_BackupAnimator", FestraLocaleDefaults.FESTRAI_BackupAnimator);
+        internal static string FESTRAI_Animator_Controller => LocalizeOrElse("FESTRAI_Animator_Controller", FestraLocaleDefaults.FESTRAI_Animator_Controller);
+        internal static string FESTRAI_Info => LocalizeOrElse("FESTRAI_Info", FestraLocaleDefaults.FESTRAI_Info);
+        internal static string FESTRAI_Synchronize_Animator_layers => LocalizeOrElse("FESTRAI_Synchronize_Animator_layers", FestraLocaleDefaults.FESTRAI_Synchronize_Animator_layers);
         // 1.5
-        internal static string CGEE_EyesAreClosed => LocalizeOrElse("CGEE_EyesAreClosed", CgeLocaleDefaults.CGEE_EyesAreClosed);
+        internal static string FESTRAE_EyesAreClosed => LocalizeOrElse("FESTRAE_EyesAreClosed", FestraLocaleDefaults.FESTRAE_EyesAreClosed);
         // 1.6.0
-        internal static string CGEC_WarnNoMassiveBlend => LocalizeOrElse("CGEC_WarnNoMassiveBlend", CgeLocaleDefaults.CGEC_WarnNoMassiveBlend);
+        internal static string FESTRAC_WarnNoMassiveBlend => LocalizeOrElse("FESTRAC_WarnNoMassiveBlend", FestraLocaleDefaults.FESTRAC_WarnNoMassiveBlend);
         //
-        internal static string CGEE_OneHandMode => LocalizeOrElse("CGEE_OneHandMode", CgeLocaleDefaults.CGEE_OneHandMode);
-        internal static string CGEE_OneHandModeIntro => LocalizeOrElse("CGEE_OneHandModeIntro", CgeLocaleDefaults.CGEE_OneHandModeIntro);
-        internal static string CGEE_Combine => LocalizeOrElse("CGEE_Combine", CgeLocaleDefaults.CGEE_Combine);
-        internal static string CGEE_CombineAcross => LocalizeOrElse("CGEE_CombineAcross", CgeLocaleDefaults.CGEE_CombineAcross);
-        internal static string CGEE_Create => LocalizeOrElse("CGEE_Create", CgeLocaleDefaults.CGEE_Create);
-        internal static string CGEE_Simplify => LocalizeOrElse("CGEE_Simplify", CgeLocaleDefaults.CGEE_Simplify);
-        internal static string CGEE_SwapToFix => LocalizeOrElse("CGEE_SwapToFix", CgeLocaleDefaults.CGEE_SwapToFix);
-        internal static string CGEE_AutoSet => LocalizeOrElse("CGEE_AutoSet", CgeLocaleDefaults.CGEE_AutoSet);
-        internal static string CGEE_EnablePermutations => LocalizeOrElse("CGEE_EnablePermutations", CgeLocaleDefaults.CGEE_EnablePermutations);
-        internal static string CGEE_CombinerShowHidden => LocalizeOrElse("CGEE_CombinerShowHidden", CgeLocaleDefaults.CGEE_CombinerShowHidden);
-        internal static string CGEE_CombinerShowFullPaths => LocalizeOrElse("CGEE_CombinerShowFullPaths", CgeLocaleDefaults.CGEE_CombinerShowFullPaths);
-        internal static string CGEE_TreeAnimationAtRest => LocalizeOrElse("CGEE_TreeAnimationAtRest", CgeLocaleDefaults.CGEE_TreeAnimationAtRest);
-        internal static string CGEE_TreeJoystickCenterAnimation => LocalizeOrElse("CGEE_TreeJoystickCenterAnimation", CgeLocaleDefaults.CGEE_TreeJoystickCenterAnimation);
-        internal static string CGEE_TreeFixJoystickSnapping => LocalizeOrElse("CGEE_TreeFixJoystickSnapping", CgeLocaleDefaults.CGEE_TreeFixJoystickSnapping);
-        internal static string CGEE_TreeJoystickMaximumTilt => LocalizeOrElse("CGEE_TreeJoystickMaximumTilt", CgeLocaleDefaults.CGEE_TreeJoystickMaximumTilt);
-        internal static string CGEE_TreeCreateAsset => LocalizeOrElse("CGEE_TreeCreateAsset", CgeLocaleDefaults.CGEE_TreeCreateAsset);
-        internal static string CGEE_TreeFileCreate => LocalizeOrElse("CGEE_TreeFileCreate", CgeLocaleDefaults.CGEE_TreeFileCreate);
-        internal static string CGEE_TreeFileInvalidSavePath => LocalizeOrElse("CGEE_TreeFileInvalidSavePath", CgeLocaleDefaults.CGEE_TreeFileInvalidSavePath);
-        internal static string CGEE_TreeFileInvalidSavePathMessage => LocalizeOrElse("CGEE_TreeFileInvalidSavePathMessage", CgeLocaleDefaults.CGEE_TreeFileInvalidSavePathMessage);
+        internal static string FESTRAE_OneHandMode => LocalizeOrElse("FESTRAE_OneHandMode", FestraLocaleDefaults.FESTRAE_OneHandMode);
+        internal static string FESTRAE_OneHandModeIntro => LocalizeOrElse("FESTRAE_OneHandModeIntro", FestraLocaleDefaults.FESTRAE_OneHandModeIntro);
+        internal static string FESTRAE_Combine => LocalizeOrElse("FESTRAE_Combine", FestraLocaleDefaults.FESTRAE_Combine);
+        internal static string FESTRAE_CombineAcross => LocalizeOrElse("FESTRAE_CombineAcross", FestraLocaleDefaults.FESTRAE_CombineAcross);
+        internal static string FESTRAE_Create => LocalizeOrElse("FESTRAE_Create", FestraLocaleDefaults.FESTRAE_Create);
+        internal static string FESTRAE_Simplify => LocalizeOrElse("FESTRAE_Simplify", FestraLocaleDefaults.FESTRAE_Simplify);
+        internal static string FESTRAE_SwapToFix => LocalizeOrElse("FESTRAE_SwapToFix", FestraLocaleDefaults.FESTRAE_SwapToFix);
+        internal static string FESTRAE_AutoSet => LocalizeOrElse("FESTRAE_AutoSet", FestraLocaleDefaults.FESTRAE_AutoSet);
+        internal static string FESTRAE_EnablePermutations => LocalizeOrElse("FESTRAE_EnablePermutations", FestraLocaleDefaults.FESTRAE_EnablePermutations);
+        internal static string FESTRAE_CombinerShowHidden => LocalizeOrElse("FESTRAE_CombinerShowHidden", FestraLocaleDefaults.FESTRAE_CombinerShowHidden);
+        internal static string FESTRAE_CombinerShowFullPaths => LocalizeOrElse("FESTRAE_CombinerShowFullPaths", FestraLocaleDefaults.FESTRAE_CombinerShowFullPaths);
+        internal static string FESTRAE_TreeAnimationAtRest => LocalizeOrElse("FESTRAE_TreeAnimationAtRest", FestraLocaleDefaults.FESTRAE_TreeAnimationAtRest);
+        internal static string FESTRAE_TreeJoystickCenterAnimation => LocalizeOrElse("FESTRAE_TreeJoystickCenterAnimation", FestraLocaleDefaults.FESTRAE_TreeJoystickCenterAnimation);
+        internal static string FESTRAE_TreeFixJoystickSnapping => LocalizeOrElse("FESTRAE_TreeFixJoystickSnapping", FestraLocaleDefaults.FESTRAE_TreeFixJoystickSnapping);
+        internal static string FESTRAE_TreeJoystickMaximumTilt => LocalizeOrElse("FESTRAE_TreeJoystickMaximumTilt", FestraLocaleDefaults.FESTRAE_TreeJoystickMaximumTilt);
+        internal static string FESTRAE_TreeCreateAsset => LocalizeOrElse("FESTRAE_TreeCreateAsset", FestraLocaleDefaults.FESTRAE_TreeCreateAsset);
+        internal static string FESTRAE_TreeFileCreate => LocalizeOrElse("FESTRAE_TreeFileCreate", FestraLocaleDefaults.FESTRAE_TreeFileCreate);
+        internal static string FESTRAE_TreeFileInvalidSavePath => LocalizeOrElse("FESTRAE_TreeFileInvalidSavePath", FestraLocaleDefaults.FESTRAE_TreeFileInvalidSavePath);
+        internal static string FESTRAE_TreeFileInvalidSavePathMessage => LocalizeOrElse("FESTRAE_TreeFileInvalidSavePathMessage", FestraLocaleDefaults.FESTRAE_TreeFileInvalidSavePathMessage);
         // 2.0.0
-        internal static string CGEC_ViveAdvancedControlsWarning => LocalizeOrElse("CGEC_ViveAdvancedControlsWarning", CgeLocaleDefaults.CGEC_ViveAdvancedControlsWarning);
+        internal static string FESTRAC_ViveAdvancedControlsWarning => LocalizeOrElse("FESTRAC_ViveAdvancedControlsWarning", FestraLocaleDefaults.FESTRAC_ViveAdvancedControlsWarning);
         //
-        internal static string CGEC_Avatar_Dynamics => LocalizeOrElse("CGEC_Avatar_Dynamics", CgeLocaleDefaults.CGEC_Avatar_Dynamics);
-        internal static string CGEC_Dynamics => LocalizeOrElse("CGEC_Dynamics", CgeLocaleDefaults.CGEC_Dynamics);
-        internal static string CGEC_DoNotForceBlinkBlendshapes => LocalizeOrElse("CGEC_DoNotForceBlinkBlendshapes", CgeLocaleDefaults.CGEC_DoNotForceBlinkBlendshapes);
-        internal static string CGED_DynamicExpression => LocalizeOrElse("CGED_DynamicExpression", CgeLocaleDefaults.CGED_DynamicExpression);
-        internal static string CGED_DynamicCondition => LocalizeOrElse("CGED_DynamicCondition", CgeLocaleDefaults.CGED_DynamicCondition);
-        internal static string CGED_Clip => LocalizeOrElse("CGED_Clip", CgeLocaleDefaults.CGED_Clip);
-        internal static string CGED_Condition => LocalizeOrElse("CGED_Condition", CgeLocaleDefaults.CGED_Condition);
-        internal static string CGED_ContactReceiver => LocalizeOrElse("CGED_ContactReceiver", CgeLocaleDefaults.CGED_ContactReceiver);
-        internal static string CGED_Effect => LocalizeOrElse("CGED_Effect", CgeLocaleDefaults.CGED_Effect);
-        internal static string CGED_IsHardThreshold => LocalizeOrElse("CGED_IsHardThreshold", CgeLocaleDefaults.CGED_IsHardThreshold);
-        internal static string CGED_MoodSet => LocalizeOrElse("CGED_MoodSet", CgeLocaleDefaults.CGED_MoodSet);
-        internal static string CGED_ParameterName => LocalizeOrElse("CGED_ParameterName", CgeLocaleDefaults.CGED_ParameterName);
-        internal static string CGED_ParameterType => LocalizeOrElse("CGED_ParameterType", CgeLocaleDefaults.CGED_ParameterType);
-        internal static string CGED_PhysBone => LocalizeOrElse("CGED_PhysBone", CgeLocaleDefaults.CGED_PhysBone);
-        internal static string CGED_PhysBoneSource => LocalizeOrElse("CGED_PhysBoneSource", CgeLocaleDefaults.CGED_PhysBoneSource);
-        internal static string CGED_Source => LocalizeOrElse("CGED_Source", CgeLocaleDefaults.CGED_Source);
-        internal static string CGED_Threshold => LocalizeOrElse("CGED_Threshold", CgeLocaleDefaults.CGED_Threshold);
-        internal static string CGED_Higher_priority => LocalizeOrElse("CGED_Higher_priority", CgeLocaleDefaults.CGED_Higher_priority);
-        public static string CGEC_MMD_compatibility_toggle_parameter => LocalizeOrElse("CGEC_MMD_compatibility_toggle_parameter", CgeLocaleDefaults.CGEC_MMD_compatibility_toggle_parameter);
-        public static string CGEE_Mode => LocalizeOrElse("CGEE_Mode", CgeLocaleDefaults.CGEE_Mode);
-        public static string CGEC_Slowness_warning => LocalizeOrElse("CGEC_Slowness_warning", CgeLocaleDefaults.CGEC_Slowness_warning);
-        public static string CGED_MissingParameterOnContact => LocalizeOrElse("CGED_MissingParameterOnContact", CgeLocaleDefaults.CGED_MissingParameterOnContact);
-        public static string CGED_MissingParameterOnPhysBone => LocalizeOrElse("CGED_MissingParameterOnPhysBone", CgeLocaleDefaults.CGED_MissingParameterOnPhysBone);
-        public static string CGEC_MainDynamics => LocalizeOrElse("CGEC_MainDynamics", CgeLocaleDefaults.CGEC_MainDynamics);
-        public static string CGED_EnterTransitionDuration => LocalizeOrElse("CGED_EnterTransitionDuration", CgeLocaleDefaults.CGED_EnterTransitionDuration);
-        public static string CGED_OnEnterCurve => LocalizeOrElse("CGED_OnEnterCurve", CgeLocaleDefaults.CGED_OnEnterCurve);
-        public static string CGED_OnEnterDuration => LocalizeOrElse("CGED_OnEnterDuration", CgeLocaleDefaults.CGED_OnEnterDuration);
-        public static string CGED_BehavesLikeOnEnter => LocalizeOrElse("CGED_BehavesLikeOnEnter", CgeLocaleDefaults.CGED_BehavesLikeOnEnter);
-        public static string CGED_UpperBound => LocalizeOrElse("CGED_UpperBound", CgeLocaleDefaults.CGED_UpperBound);
+        internal static string FESTRAC_Avatar_Dynamics => LocalizeOrElse("FESTRAC_Avatar_Dynamics", FestraLocaleDefaults.FESTRAC_Avatar_Dynamics);
+        internal static string FESTRAC_Dynamics => LocalizeOrElse("FESTRAC_Dynamics", FestraLocaleDefaults.FESTRAC_Dynamics);
+        internal static string FESTRAC_DoNotForceBlinkBlendshapes => LocalizeOrElse("FESTRAC_DoNotForceBlinkBlendshapes", FestraLocaleDefaults.FESTRAC_DoNotForceBlinkBlendshapes);
+        internal static string FESTRAD_DynamicExpression => LocalizeOrElse("FESTRAD_DynamicExpression", FestraLocaleDefaults.FESTRAD_DynamicExpression);
+        internal static string FESTRAD_DynamicCondition => LocalizeOrElse("FESTRAD_DynamicCondition", FestraLocaleDefaults.FESTRAD_DynamicCondition);
+        internal static string FESTRAD_Clip => LocalizeOrElse("FESTRAD_Clip", FestraLocaleDefaults.FESTRAD_Clip);
+        internal static string FESTRAD_Condition => LocalizeOrElse("FESTRAD_Condition", FestraLocaleDefaults.FESTRAD_Condition);
+        internal static string FESTRAD_ContactReceiver => LocalizeOrElse("FESTRAD_ContactReceiver", FestraLocaleDefaults.FESTRAD_ContactReceiver);
+        internal static string FESTRAD_Effect => LocalizeOrElse("FESTRAD_Effect", FestraLocaleDefaults.FESTRAD_Effect);
+        internal static string FESTRAD_IsHardThreshold => LocalizeOrElse("FESTRAD_IsHardThreshold", FestraLocaleDefaults.FESTRAD_IsHardThreshold);
+        internal static string FESTRAD_MoodSet => LocalizeOrElse("FESTRAD_MoodSet", FestraLocaleDefaults.FESTRAD_MoodSet);
+        internal static string FESTRAD_ParameterName => LocalizeOrElse("FESTRAD_ParameterName", FestraLocaleDefaults.FESTRAD_ParameterName);
+        internal static string FESTRAD_ParameterType => LocalizeOrElse("FESTRAD_ParameterType", FestraLocaleDefaults.FESTRAD_ParameterType);
+        internal static string FESTRAD_PhysBone => LocalizeOrElse("FESTRAD_PhysBone", FestraLocaleDefaults.FESTRAD_PhysBone);
+        internal static string FESTRAD_PhysBoneSource => LocalizeOrElse("FESTRAD_PhysBoneSource", FestraLocaleDefaults.FESTRAD_PhysBoneSource);
+        internal static string FESTRAD_Source => LocalizeOrElse("FESTRAD_Source", FestraLocaleDefaults.FESTRAD_Source);
+        internal static string FESTRAD_Threshold => LocalizeOrElse("FESTRAD_Threshold", FestraLocaleDefaults.FESTRAD_Threshold);
+        internal static string FESTRAD_Higher_priority => LocalizeOrElse("FESTRAD_Higher_priority", FestraLocaleDefaults.FESTRAD_Higher_priority);
+        public static string FESTRAC_MMD_compatibility_toggle_parameter => LocalizeOrElse("FESTRAC_MMD_compatibility_toggle_parameter", FestraLocaleDefaults.FESTRAC_MMD_compatibility_toggle_parameter);
+        public static string FESTRAE_Mode => LocalizeOrElse("FESTRAE_Mode", FestraLocaleDefaults.FESTRAE_Mode);
+        public static string FESTRAC_Slowness_warning => LocalizeOrElse("FESTRAC_Slowness_warning", FestraLocaleDefaults.FESTRAC_Slowness_warning);
+        public static string FESTRAD_MissingParameterOnContact => LocalizeOrElse("FESTRAD_MissingParameterOnContact", FestraLocaleDefaults.FESTRAD_MissingParameterOnContact);
+        public static string FESTRAD_MissingParameterOnPhysBone => LocalizeOrElse("FESTRAD_MissingParameterOnPhysBone", FestraLocaleDefaults.FESTRAD_MissingParameterOnPhysBone);
+        public static string FESTRAC_MainDynamics => LocalizeOrElse("FESTRAC_MainDynamics", FestraLocaleDefaults.FESTRAC_MainDynamics);
+        public static string FESTRAD_EnterTransitionDuration => LocalizeOrElse("FESTRAD_EnterTransitionDuration", FestraLocaleDefaults.FESTRAD_EnterTransitionDuration);
+        public static string FESTRAD_OnEnterCurve => LocalizeOrElse("FESTRAD_OnEnterCurve", FestraLocaleDefaults.FESTRAD_OnEnterCurve);
+        public static string FESTRAD_OnEnterDuration => LocalizeOrElse("FESTRAD_OnEnterDuration", FestraLocaleDefaults.FESTRAD_OnEnterDuration);
+        public static string FESTRAD_BehavesLikeOnEnter => LocalizeOrElse("FESTRAD_BehavesLikeOnEnter", FestraLocaleDefaults.FESTRAD_BehavesLikeOnEnter);
+        public static string FESTRAD_UpperBound => LocalizeOrElse("FESTRAD_UpperBound", FestraLocaleDefaults.FESTRAD_UpperBound);
         // 2.1.0
-        public static string CGEC_FaceTracking => LocalizeOrElse("CGEC_FaceTracking", CgeLocaleDefaults.CGEC_FaceTracking);
-        public static string CGEC_Synchronize_Face_Tracking_Layers => LocalizeOrElse("CGEC_Synchronize_Face_Tracking_Layers", CgeLocaleDefaults.CGEC_Synchronize_Face_Tracking_Layers);
+        public static string FESTRAC_FaceTracking => LocalizeOrElse("FESTRAC_FaceTracking", FestraLocaleDefaults.FESTRAC_FaceTracking);
+        public static string FESTRAC_Synchronize_Face_Tracking_Layers => LocalizeOrElse("FESTRAC_Synchronize_Face_Tracking_Layers", FestraLocaleDefaults.FESTRAC_Synchronize_Face_Tracking_Layers);
 
 
 
         private static string LocalizeOrElse(string key, string defaultCultureLocalization)
         {
-            return CgeLocalization.LocalizeOrElse(key, defaultCultureLocalization);
+            return FestraLocalization.LocalizeOrElse(key, defaultCultureLocalization);
         }
 
         public static string DocumentationUrl()
         {
-            var localizedUrl = CGE_Documentation_URL;
-            return localizedUrl.StartsWith(CgeLocaleDefaults.OfficialDocumentationUrlAsPrefix) ? localizedUrl : CgeLocaleDefaults.CGE_Documentation_URL;
+            var localizedUrl = FESTRA_Documentation_URL;
+            return localizedUrl.StartsWith(FestraLocaleDefaults.OfficialDocumentationUrlAsPrefix) ? localizedUrl : FestraLocaleDefaults.FESTRA_Documentation_URL;
         }
 
         public static string PermutationsDocumentationUrl()
         {
-            var localizedUrl = CGE_PermutationsDocumentation_URL;
-            return localizedUrl.StartsWith(CgeLocaleDefaults.OfficialDocumentationUrlAsPrefix) ? localizedUrl : CgeLocaleDefaults.CGE_PermutationsDocumentation_URL;
+            var localizedUrl = FESTRA_PermutationsDocumentation_URL;
+            return localizedUrl.StartsWith(FestraLocaleDefaults.OfficialDocumentationUrlAsPrefix) ? localizedUrl : FestraLocaleDefaults.FESTRA_PermutationsDocumentation_URL;
         }
 
         public static string IntegratorDocumentationUrl()
         {
-            var localizedUrl = CGE_IntegratorDocumentation_URL;
-            return localizedUrl.StartsWith(CgeLocaleDefaults.OfficialDocumentationUrlAsPrefix) ? localizedUrl : CgeLocaleDefaults.CGE_IntegratorDocumentation_URL;
+            var localizedUrl = FESTRA_IntegratorDocumentation_URL;
+            return localizedUrl.StartsWith(FestraLocaleDefaults.OfficialDocumentationUrlAsPrefix) ? localizedUrl : FestraLocaleDefaults.FESTRA_IntegratorDocumentation_URL;
         }
 
         public static string CompileDefaultLocaleJson()
         {
-            var fields = typeof(CgeLocaleDefaults).GetFields(BindingFlags.NonPublic | BindingFlags.Static);
+            var fields = typeof(FestraLocaleDefaults).GetFields(BindingFlags.NonPublic | BindingFlags.Static);
             var jsonObject = new JSONObject();
-            foreach (var field in fields.Where(info => info.Name.StartsWith("CGE")))
+            foreach (var field in fields.Where(info => info.Name.StartsWith("FESTRA")))
             {
                 jsonObject[field.Name] = new JSONString((string) field.GetValue(null));
             }

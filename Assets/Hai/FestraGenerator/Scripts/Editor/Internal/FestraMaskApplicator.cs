@@ -5,14 +5,14 @@ using UnityEditor;
 using UnityEditor.Animations;
 using UnityEngine;
 
-namespace Hai.ComboGesture.Scripts.Editor.Internal
+namespace Hai.FestraGenerator.Scripts.Editor.Internal
 {
-    public class CgeMaskApplicator
+    public class FestraMaskApplicator
     {
         private readonly AvatarMask _mask;
         private readonly AnimatorController _fxController;
 
-        public CgeMaskApplicator(RuntimeAnimatorController fxController, AvatarMask mask)
+        public FestraMaskApplicator(RuntimeAnimatorController fxController, AvatarMask mask)
         {
             _mask = mask;
             _fxController = (AnimatorController)fxController;
@@ -98,7 +98,7 @@ namespace Hai.ComboGesture.Scripts.Editor.Internal
 
         private List<string> FindPotentiallyAnimatedPaths()
         {
-            return CgeSharedLayerUtils.FindAllReachableClipsAndBlendTrees(_fxController)
+            return FestraSharedLayerUtils.FindAllReachableClipsAndBlendTrees(_fxController)
                 .OfType<AnimationClip>()
                 .SelectMany(clip =>
                 {

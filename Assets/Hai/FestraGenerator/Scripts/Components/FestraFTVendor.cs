@@ -7,14 +7,14 @@ using VRC.SDK3.Avatars.ScriptableObjects;
 
 namespace Hai.FestraGenerator.Scripts.Components
 {
-    public abstract class ComboGestureFTVendor : MonoBehaviour
+    public abstract class FestraFTVendor : MonoBehaviour
     {
         public VRCExpressionParameters expressionParameters;
-        public CgeDebugInfluence debugShowInfluences;
+        public FestraDebugInfluence debugShowInfluences;
 
-        public abstract Dictionary<string, CgeElementActuator[]> ExposeMap();
+        public abstract Dictionary<string, FestraElementActuator[]> ExposeMap();
 
-        public virtual CgeElementActuator[] ToElementActuators()
+        public virtual FestraElementActuator[] ToElementActuators()
         {
             var map = ExposeMap();
             return GetType()
@@ -25,21 +25,21 @@ namespace Hai.FestraGenerator.Scripts.Components
                 .ToArray();
         }
 
-        public enum CgeDebugInfluence
+        public enum FestraDebugInfluence
         {
             None, All, OnlyActive
         }
     }
 
     [Serializable]
-    public struct CgeElementActuator
+    public struct FestraElementActuator
     {
         public string element;
-        public CgeActuator actuator;
+        public FestraActuator actuator;
     }
 
     [Serializable]
-    public struct CgeActuator
+    public struct FestraActuator
     {
         public string sensorParameterName;
         public float neutral;
@@ -47,7 +47,7 @@ namespace Hai.FestraGenerator.Scripts.Components
     }
 
     // SRAnipal Naming Convention
-    public enum CgeSRAnipalConvention
+    public enum FestraSRAnipalConvention
     {
         Jaw_Right,
         Jaw_Left,
@@ -110,31 +110,31 @@ namespace Hai.FestraGenerator.Scripts.Components
         Eye_Right_Constrict,
         NOT_APPLICABLE,
         NOT_IMPLEMENTED,
-        CgeElementTODO
+        FestraElementTODO
     }
     
-    internal class CgeInternalVRCFTContinuation
+    internal class FestraInternalVRCFTContinuation
     {
-        private readonly List<CgeElementActuator> _result;
+        private readonly List<FestraElementActuator> _result;
         private readonly string _parameter;
 
-        public CgeInternalVRCFTContinuation(string parameter)
+        public FestraInternalVRCFTContinuation(string parameter)
         {
-            _result = new List<CgeElementActuator>();
+            _result = new List<FestraElementActuator>();
             _parameter = parameter;
         }
 
-        internal CgeElementActuator[] ToArray()
+        internal FestraElementActuator[] ToArray()
         {
             return _result.ToArray();
         }
         
-        internal CgeInternalVRCFTContinuation P01(CgeSRAnipalConvention element)
+        internal FestraInternalVRCFTContinuation P01(FestraSRAnipalConvention element)
         {
-            _result.Add(new CgeElementActuator
+            _result.Add(new FestraElementActuator
             {
-                element = Enum.GetName(typeof(CgeSRAnipalConvention), element),
-                actuator = new CgeActuator
+                element = Enum.GetName(typeof(FestraSRAnipalConvention), element),
+                actuator = new FestraActuator
                 {
                     sensorParameterName = _parameter,
                     neutral = 0f,
@@ -144,12 +144,12 @@ namespace Hai.FestraGenerator.Scripts.Components
             return this;
         }
 
-        public CgeInternalVRCFTContinuation Decay(CgeSRAnipalConvention element)
+        public FestraInternalVRCFTContinuation Decay(FestraSRAnipalConvention element)
         {
-            _result.Add(new CgeElementActuator
+            _result.Add(new FestraElementActuator
             {
-                element = Enum.GetName(typeof(CgeSRAnipalConvention), element),
-                actuator = new CgeActuator
+                element = Enum.GetName(typeof(FestraSRAnipalConvention), element),
+                actuator = new FestraActuator
                 {
                     sensorParameterName = _parameter,
                     neutral = 1f,
@@ -159,12 +159,12 @@ namespace Hai.FestraGenerator.Scripts.Components
             return this;
         }
         
-        internal CgeInternalVRCFTContinuation Negative(CgeSRAnipalConvention element)
+        internal FestraInternalVRCFTContinuation Negative(FestraSRAnipalConvention element)
         {
-            _result.Add(new CgeElementActuator
+            _result.Add(new FestraElementActuator
             {
-                element = Enum.GetName(typeof(CgeSRAnipalConvention), element),
-                actuator = new CgeActuator
+                element = Enum.GetName(typeof(FestraSRAnipalConvention), element),
+                actuator = new FestraActuator
                 {
                     sensorParameterName = _parameter,
                     neutral = 0f,
@@ -174,22 +174,22 @@ namespace Hai.FestraGenerator.Scripts.Components
             return this;
         }
 
-        internal CgeInternalVRCFTContinuation Joystick(CgeSRAnipalConvention negativeLeftDown, CgeSRAnipalConvention positiveUpRight)
+        internal FestraInternalVRCFTContinuation Joystick(FestraSRAnipalConvention negativeLeftDown, FestraSRAnipalConvention positiveUpRight)
         {
-            _result.Add(new CgeElementActuator
+            _result.Add(new FestraElementActuator
             {
-                element = Enum.GetName(typeof(CgeSRAnipalConvention), negativeLeftDown),
-                actuator = new CgeActuator
+                element = Enum.GetName(typeof(FestraSRAnipalConvention), negativeLeftDown),
+                actuator = new FestraActuator
                 {
                     sensorParameterName = _parameter,
                     neutral = 0f,
                     actuated = -1f
                 }
             });
-            _result.Add(new CgeElementActuator
+            _result.Add(new FestraElementActuator
             {
-                element = Enum.GetName(typeof(CgeSRAnipalConvention), positiveUpRight),
-                actuator = new CgeActuator
+                element = Enum.GetName(typeof(FestraSRAnipalConvention), positiveUpRight),
+                actuator = new FestraActuator
                 {
                     sensorParameterName = _parameter,
                     neutral = 0f,
@@ -199,22 +199,22 @@ namespace Hai.FestraGenerator.Scripts.Components
             return this;
         }
 
-        internal CgeInternalVRCFTContinuation Stepped(CgeSRAnipalConvention neutral, CgeSRAnipalConvention positive)
+        internal FestraInternalVRCFTContinuation Stepped(FestraSRAnipalConvention neutral, FestraSRAnipalConvention positive)
         {
-            _result.Add(new CgeElementActuator
+            _result.Add(new FestraElementActuator
             {
-                element = Enum.GetName(typeof(CgeSRAnipalConvention), neutral),
-                actuator = new CgeActuator
+                element = Enum.GetName(typeof(FestraSRAnipalConvention), neutral),
+                actuator = new FestraActuator
                 {
                     sensorParameterName = _parameter,
                     neutral = -1f,
                     actuated = 0f
                 }
             });
-            _result.Add(new CgeElementActuator
+            _result.Add(new FestraElementActuator
             {
-                element = Enum.GetName(typeof(CgeSRAnipalConvention), positive),
-                actuator = new CgeActuator
+                element = Enum.GetName(typeof(FestraSRAnipalConvention), positive),
+                actuator = new FestraActuator
                 {
                     sensorParameterName = _parameter,
                     neutral = 0f,
@@ -224,22 +224,22 @@ namespace Hai.FestraGenerator.Scripts.Components
             return this;
         }
 
-        public CgeInternalVRCFTContinuation Aperture(CgeSRAnipalConvention zero, CgeSRAnipalConvention one)
+        public FestraInternalVRCFTContinuation Aperture(FestraSRAnipalConvention zero, FestraSRAnipalConvention one)
         {
-            _result.Add(new CgeElementActuator
+            _result.Add(new FestraElementActuator
             {
-                element = Enum.GetName(typeof(CgeSRAnipalConvention), zero),
-                actuator = new CgeActuator
+                element = Enum.GetName(typeof(FestraSRAnipalConvention), zero),
+                actuator = new FestraActuator
                 {
                     sensorParameterName = _parameter,
                     neutral = 0.5f,
                     actuated = 0f
                 }
             });
-            _result.Add(new CgeElementActuator
+            _result.Add(new FestraElementActuator
             {
-                element = Enum.GetName(typeof(CgeSRAnipalConvention), one),
-                actuator = new CgeActuator
+                element = Enum.GetName(typeof(FestraSRAnipalConvention), one),
+                actuator = new FestraActuator
                 {
                     sensorParameterName = _parameter,
                     neutral = 0.5f,

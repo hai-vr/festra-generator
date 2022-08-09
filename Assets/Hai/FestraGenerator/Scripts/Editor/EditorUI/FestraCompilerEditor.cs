@@ -1,18 +1,17 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using Hai.ComboGesture.Scripts.Editor.Internal;
 using Hai.FestraGenerator.Scripts.Components;
-using Hai.FestraGenerator.Scripts.Editor.EditorUI;
+using Hai.FestraGenerator.Scripts.Editor.Internal;
 using UnityEditor;
 using UnityEngine;
 using VRC.SDK3.Avatars.Components;
 using AnimatorController = UnityEditor.Animations.AnimatorController;
 
-namespace Hai.ComboGesture.Scripts.Editor.EditorUI
+namespace Hai.FestraGenerator.Scripts.Editor.EditorUI
 {
-    [CustomEditor(typeof(ComboGestureCompiler))]
-    public class ComboGestureCompilerEditor : UnityEditor.Editor
+    [CustomEditor(typeof(FestraCompiler))]
+    public class FestraCompilerEditor : UnityEditor.Editor
     {
         public SerializedProperty animatorController;
         public SerializedProperty useGesturePlayableLayer;
@@ -39,30 +38,30 @@ namespace Hai.ComboGesture.Scripts.Editor.EditorUI
 
         private void OnEnable()
         {
-            animatorController = serializedObject.FindProperty(nameof(ComboGestureCompiler.animatorController));
-            useGesturePlayableLayer = serializedObject.FindProperty(nameof(ComboGestureCompiler.useGesturePlayableLayer));
-            gesturePlayableLayerController = serializedObject.FindProperty(nameof(ComboGestureCompiler.gesturePlayableLayerController));
-            customEmptyClip = serializedObject.FindProperty(nameof(ComboGestureCompiler.customEmptyClip));
-            analogBlinkingUpperThreshold = serializedObject.FindProperty(nameof(ComboGestureCompiler.analogBlinkingUpperThreshold));
+            animatorController = serializedObject.FindProperty(nameof(FestraCompiler.animatorController));
+            useGesturePlayableLayer = serializedObject.FindProperty(nameof(FestraCompiler.useGesturePlayableLayer));
+            gesturePlayableLayerController = serializedObject.FindProperty(nameof(FestraCompiler.gesturePlayableLayerController));
+            customEmptyClip = serializedObject.FindProperty(nameof(FestraCompiler.customEmptyClip));
+            analogBlinkingUpperThreshold = serializedObject.FindProperty(nameof(FestraCompiler.analogBlinkingUpperThreshold));
 
-            doNotGenerateBlinkingOverrideLayer = serializedObject.FindProperty(nameof(ComboGestureCompiler.doNotGenerateBlinkingOverrideLayer));
+            doNotGenerateBlinkingOverrideLayer = serializedObject.FindProperty(nameof(FestraCompiler.doNotGenerateBlinkingOverrideLayer));
 
-            writeDefaultsRecommendationMode = serializedObject.FindProperty(nameof(ComboGestureCompiler.writeDefaultsRecommendationMode));
-            writeDefaultsRecommendationModeGesture = serializedObject.FindProperty(nameof(ComboGestureCompiler.writeDefaultsRecommendationModeGesture));
-            generatedAvatarMask = serializedObject.FindProperty(nameof(ComboGestureCompiler.generatedAvatarMask));
+            writeDefaultsRecommendationMode = serializedObject.FindProperty(nameof(FestraCompiler.writeDefaultsRecommendationMode));
+            writeDefaultsRecommendationModeGesture = serializedObject.FindProperty(nameof(FestraCompiler.writeDefaultsRecommendationModeGesture));
+            generatedAvatarMask = serializedObject.FindProperty(nameof(FestraCompiler.generatedAvatarMask));
 
-            avatarDescriptor = serializedObject.FindProperty(nameof(ComboGestureCompiler.avatarDescriptor));
+            avatarDescriptor = serializedObject.FindProperty(nameof(FestraCompiler.avatarDescriptor));
 
-            assetContainer = serializedObject.FindProperty(nameof(ComboGestureCompiler.assetContainer));
-            generateNewContainerEveryTime = serializedObject.FindProperty(nameof(ComboGestureCompiler.generateNewContainerEveryTime));
+            assetContainer = serializedObject.FindProperty(nameof(FestraCompiler.assetContainer));
+            generateNewContainerEveryTime = serializedObject.FindProperty(nameof(FestraCompiler.generateNewContainerEveryTime));
 
-            doNotForceBlinkBlendshapes = serializedObject.FindProperty(nameof(ComboGestureCompiler.doNotForceBlinkBlendshapes));
-            mmdCompatibilityToggleParameter = serializedObject.FindProperty(nameof(ComboGestureCompiler.mmdCompatibilityToggleParameter));
-            faceTracking = serializedObject.FindProperty(nameof(ComboGestureCompiler.faceTracking));
+            doNotForceBlinkBlendshapes = serializedObject.FindProperty(nameof(FestraCompiler.doNotForceBlinkBlendshapes));
+            mmdCompatibilityToggleParameter = serializedObject.FindProperty(nameof(FestraCompiler.mmdCompatibilityToggleParameter));
+            faceTracking = serializedObject.FindProperty(nameof(FestraCompiler.faceTracking));
 
             // reference: https://blog.terresquall.com/2020/03/creating-reorderable-lists-in-the-unity-inspector/
 
-            editorAdvancedFoldout = serializedObject.FindProperty(nameof(ComboGestureCompiler.editorAdvancedFoldout));
+            editorAdvancedFoldout = serializedObject.FindProperty(nameof(FestraCompiler.editorAdvancedFoldout));
         }
 
         public override void OnInspectorGUI()
@@ -73,62 +72,62 @@ namespace Hai.ComboGesture.Scripts.Editor.EditorUI
 
             if (GUILayout.Button("Switch language (English / 日本語)"))
             {
-                CgeLocalization.CycleLocale();
+                FestraLocalization.CycleLocale();
             }
 
-            if (CgeLocalization.IsEnglishLocaleActive())
+            if (FestraLocalization.IsEnglishLocaleActive())
             {
                 EditorGUILayout.LabelField("");
             }
             else
             {
-                EditorGUILayout.LabelField("一部の翻訳は正確ではありません。cge.jp.jsonを編集することができます。");
+                EditorGUILayout.LabelField("一部の翻訳は正確ではありません。festra.jp.jsonを編集することができます。");
             }
 
-            if (GUILayout.Button(new GUIContent(CgeLocale.CGEC_Documentation_and_tutorials)))
+            if (GUILayout.Button(new GUIContent(FestraLocale.FESTRAC_Documentation_and_tutorials)))
             {
-                Application.OpenURL(CgeLocale.DocumentationUrl());
+                Application.OpenURL(FestraLocale.DocumentationUrl());
             }
 
-            EditorGUILayout.LabelField(CgeLocale.CGEC_Mood_sets, EditorStyles.boldLabel);
-            EditorGUILayout.PropertyField(avatarDescriptor, new GUIContent(CgeLocale.CGEC_Avatar_descriptor));
+            EditorGUILayout.LabelField(FestraLocale.FESTRAC_Mood_sets, EditorStyles.boldLabel);
+            EditorGUILayout.PropertyField(avatarDescriptor, new GUIContent(FestraLocale.FESTRAC_Avatar_descriptor));
 
             EditorGUILayout.Separator();
 
-            EditorGUILayout.LabelField(CgeLocale.CGEC_FX_Playable_Layer, EditorStyles.boldLabel);
-            EditorGUILayout.LabelField(CgeLocale.CGEC_BackupFX, italic);
-            EditorGUILayout.PropertyField(animatorController, new GUIContent(CgeLocale.CGEC_FX_Animator_Controller));
-            EditorGUILayout.PropertyField(writeDefaultsRecommendationMode, new GUIContent(CgeLocale.CGEC_FX_Playable_Mode));
+            EditorGUILayout.LabelField(FestraLocale.FESTRAC_FX_Playable_Layer, EditorStyles.boldLabel);
+            EditorGUILayout.LabelField(FestraLocale.FESTRAC_BackupFX, italic);
+            EditorGUILayout.PropertyField(animatorController, new GUIContent(FestraLocale.FESTRAC_FX_Animator_Controller));
+            EditorGUILayout.PropertyField(writeDefaultsRecommendationMode, new GUIContent(FestraLocale.FESTRAC_FX_Playable_Mode));
             WriteDefaultsSection(writeDefaultsRecommendationMode);
 
-            EditorGUILayout.PropertyField(doNotForceBlinkBlendshapes, new GUIContent(CgeLocale.CGEC_DoNotForceBlinkBlendshapes));
+            EditorGUILayout.PropertyField(doNotForceBlinkBlendshapes, new GUIContent(FestraLocale.FESTRAC_DoNotForceBlinkBlendshapes));
 
             EditorGUILayout.Separator();
 
-            EditorGUILayout.LabelField(CgeLocale.CGEC_Gesture_Playable_Layer, EditorStyles.boldLabel);
-            EditorGUILayout.LabelField(CgeLocale.CGEC_Support_for_other_transforms, italic);
-            EditorGUILayout.LabelField(CgeLocale.CGEC_MusclesUnsupported, italic);
-            EditorGUILayout.PropertyField(useGesturePlayableLayer, new GUIContent(CgeLocale.CGEC_Gesture_playable_layer_support));
+            EditorGUILayout.LabelField(FestraLocale.FESTRAC_Gesture_Playable_Layer, EditorStyles.boldLabel);
+            EditorGUILayout.LabelField(FestraLocale.FESTRAC_Support_for_other_transforms, italic);
+            EditorGUILayout.LabelField(FestraLocale.FESTRAC_MusclesUnsupported, italic);
+            EditorGUILayout.PropertyField(useGesturePlayableLayer, new GUIContent(FestraLocale.FESTRAC_Gesture_playable_layer_support));
             if (useGesturePlayableLayer.boolValue)
             {
-                EditorGUILayout.LabelField(CgeLocale.CGEC_BackupGesture, italic);
-                EditorGUILayout.PropertyField(gesturePlayableLayerController, new GUIContent(CgeLocale.CGEC_Gesture_Animator_Controller));
+                EditorGUILayout.LabelField(FestraLocale.FESTRAC_BackupGesture, italic);
+                EditorGUILayout.PropertyField(gesturePlayableLayerController, new GUIContent(FestraLocale.FESTRAC_Gesture_Animator_Controller));
 
-                EditorGUILayout.PropertyField(writeDefaultsRecommendationModeGesture, new GUIContent(CgeLocale.CGEC_Gesture_Playable_Mode));
+                EditorGUILayout.PropertyField(writeDefaultsRecommendationModeGesture, new GUIContent(FestraLocale.FESTRAC_Gesture_Playable_Mode));
                 WriteDefaultsSection(writeDefaultsRecommendationModeGesture);
 
                 EditorGUI.BeginDisabledGroup(true);
-                EditorGUILayout.PropertyField(generatedAvatarMask, new GUIContent(CgeLocale.CGEC_Asset_container));
+                EditorGUILayout.PropertyField(generatedAvatarMask, new GUIContent(FestraLocale.FESTRAC_Asset_container));
                 EditorGUI.EndDisabledGroup();
 
-                var missingMaskCount = CgeMaskApplicator.FindAllLayersMissingAMask(compiler.animatorController).Count();
+                var missingMaskCount = FestraMaskApplicator.FindAllLayersMissingAMask(compiler.animatorController).Count();
                 if (missingMaskCount > 0)
                 {
-                    EditorGUILayout.HelpBox(string.Format(CgeLocale.CGEC_MissingFxMask, missingMaskCount), MessageType.Error);
+                    EditorGUILayout.HelpBox(string.Format(FestraLocale.FESTRAC_MissingFxMask, missingMaskCount), MessageType.Error);
                 }
 
                 EditorGUI.BeginDisabledGroup(compiler.avatarDescriptor == null || compiler.animatorController == null || missingMaskCount == 0);
-                if (GUILayout.Button(CgeLocale.CGEC_Add_missing_masks))
+                if (GUILayout.Button(FestraLocale.FESTRAC_Add_missing_masks))
                 {
                     AddMissingMasks(compiler);
                 }
@@ -151,7 +150,7 @@ namespace Hai.ComboGesture.Scripts.Editor.EditorUI
 
             EditorGUILayout.Separator();
 
-            EditorGUILayout.LabelField(CgeLocale.CGEC_Synchronization, EditorStyles.boldLabel);
+            EditorGUILayout.LabelField(FestraLocale.FESTRAC_Synchronization, EditorStyles.boldLabel);
 
             var canSync = ThereIsNoAnimatorController() ||
                           ThereIsNoGestureAnimatorController() ||
@@ -176,13 +175,13 @@ namespace Hai.ComboGesture.Scripts.Editor.EditorUI
 
             if (compiler.totalNumberOfGenerations >= 5)
             {
-                EditorGUILayout.HelpBox(CgeLocale.CGEC_Slowness_warning, MessageType.Warning);
+                EditorGUILayout.HelpBox(FestraLocale.FESTRAC_Slowness_warning, MessageType.Warning);
             }
             EditorGUI.EndDisabledGroup();
 
-            EditorGUILayout.PropertyField(faceTracking, new GUIContent(CgeLocale.CGEC_FaceTracking));
+            EditorGUILayout.PropertyField(faceTracking, new GUIContent(FestraLocale.FESTRAC_FaceTracking));
             EditorGUI.BeginDisabledGroup(canSync);
-            if (compiler.faceTracking != null && GUILayout.Button(CgeLocale.CGEC_Synchronize_Face_Tracking_Layers))
+            if (compiler.faceTracking != null && GUILayout.Button(FestraLocale.FESTRAC_Synchronize_Face_Tracking_Layers))
             {
                 DoGenerateFaceTrackingLayers();
             }
@@ -190,20 +189,20 @@ namespace Hai.ComboGesture.Scripts.Editor.EditorUI
             EditorGUI.EndDisabledGroup();
 
             EditorGUILayout.HelpBox(
-                CgeLocale.CGEC_SynchronizationConditionsV2, MessageType.Info);
+                FestraLocale.FESTRAC_SynchronizationConditionsV2, MessageType.Info);
 
             if (compiler.assetContainer != null) {
-                EditorGUILayout.LabelField(CgeLocale.CGEC_Asset_generation, EditorStyles.boldLabel);
-                EditorGUILayout.PropertyField(assetContainer, new GUIContent(CgeLocale.CGEC_Asset_container));
+                EditorGUILayout.LabelField(FestraLocale.FESTRAC_Asset_generation, EditorStyles.boldLabel);
+                EditorGUILayout.PropertyField(assetContainer, new GUIContent(FestraLocale.FESTRAC_Asset_container));
             }
 
             EditorGUILayout.Separator();
 
-            EditorGUILayout.LabelField(CgeLocale.CGEC_Other_tweaks, EditorStyles.boldLabel);
-            EditorGUILayout.PropertyField(analogBlinkingUpperThreshold, new GUIContent(CgeLocale.CGEC_Analog_fist_blinking_threshold, CgeLocale.CGEC_AnalogFist_Popup));
-            EditorGUILayout.PropertyField(mmdCompatibilityToggleParameter, new GUIContent(CgeLocale.CGEC_MMD_compatibility_toggle_parameter));
+            EditorGUILayout.LabelField(FestraLocale.FESTRAC_Other_tweaks, EditorStyles.boldLabel);
+            EditorGUILayout.PropertyField(analogBlinkingUpperThreshold, new GUIContent(FestraLocale.FESTRAC_Analog_fist_blinking_threshold, FestraLocale.FESTRAC_AnalogFist_Popup));
+            EditorGUILayout.PropertyField(mmdCompatibilityToggleParameter, new GUIContent(FestraLocale.FESTRAC_MMD_compatibility_toggle_parameter));
 
-            editorAdvancedFoldout.boolValue = EditorGUILayout.Foldout(editorAdvancedFoldout.boolValue, CgeLocale.CGEC_Advanced);
+            editorAdvancedFoldout.boolValue = EditorGUILayout.Foldout(editorAdvancedFoldout.boolValue, FestraLocale.FESTRAC_Advanced);
             if (editorAdvancedFoldout.boolValue)
             {
                 EditorGUILayout.LabelField("Corrections", EditorStyles.boldLabel);
@@ -218,7 +217,7 @@ namespace Hai.ComboGesture.Scripts.Editor.EditorUI
                 GenBlinkingWarning(true);
 
                 EditorGUILayout.LabelField("Animation generation", EditorStyles.boldLabel);
-                EditorGUILayout.PropertyField(assetContainer, new GUIContent(CgeLocale.CGEC_Asset_container));
+                EditorGUILayout.PropertyField(assetContainer, new GUIContent(FestraLocale.FESTRAC_Asset_container));
 
                 EditorGUI.BeginDisabledGroup(assetContainer.objectReferenceValue != null);
                 EditorGUILayout.PropertyField(generateNewContainerEveryTime, new GUIContent("Don't keep track of newly generated containers"));
@@ -237,11 +236,11 @@ namespace Hai.ComboGesture.Scripts.Editor.EditorUI
                 EditorGUILayout.LabelField("Translations", EditorStyles.boldLabel);
                 if (GUILayout.Button("(Debug) Print default translation file to console"))
                 {
-                    Debug.Log(CgeLocale.CompileDefaultLocaleJson());
+                    Debug.Log(FestraLocale.CompileDefaultLocaleJson());
                 }
                 if (GUILayout.Button("(Debug) Reload localization files"))
                 {
-                    CgeLocalization.ReloadLocalizations();
+                    FestraLocalization.ReloadLocalizations();
                 }
             }
             else
@@ -252,11 +251,11 @@ namespace Hai.ComboGesture.Scripts.Editor.EditorUI
             serializedObject.ApplyModifiedProperties();
         }
 
-        private void MaskRemovalUi(ComboGestureCompiler compiler)
+        private void MaskRemovalUi(FestraCompiler compiler)
         {
             var isMaskUsed = compiler.animatorController != null && ((AnimatorController) compiler.animatorController).layers.Any(layer => layer.avatarMask == compiler.generatedAvatarMask);
             EditorGUI.BeginDisabledGroup(!isMaskUsed);
-            if (GUILayout.Button(CgeLocale.CGEC_Remove_applied_masks))
+            if (GUILayout.Button(FestraLocale.FESTRAC_Remove_applied_masks))
             {
                 DoRemoveAppliedMasks(compiler);
             }
@@ -264,7 +263,7 @@ namespace Hai.ComboGesture.Scripts.Editor.EditorUI
             EditorGUI.EndDisabledGroup();
 
             EditorGUI.BeginDisabledGroup(isMaskUsed);
-            if (GUILayout.Button(CgeLocale.CGEC_Unbind_Asset_container))
+            if (GUILayout.Button(FestraLocale.FESTRAC_Unbind_Asset_container))
             {
                 DoRemoveAppliedMasksAndAssetContainer(compiler);
             }
@@ -272,31 +271,31 @@ namespace Hai.ComboGesture.Scripts.Editor.EditorUI
             EditorGUI.EndDisabledGroup();
         }
 
-        private void AddMissingMasks(ComboGestureCompiler compiler)
+        private void AddMissingMasks(FestraCompiler compiler)
         {
             CreateAvatarMaskAssetIfNecessary(compiler);
-            new CgeMaskApplicator(compiler.animatorController, compiler.generatedAvatarMask).AddMissingMasks();
-            new CgeMaskApplicator(compiler.animatorController, compiler.generatedAvatarMask).UpdateMask();
+            new FestraMaskApplicator(compiler.animatorController, compiler.generatedAvatarMask).AddMissingMasks();
+            new FestraMaskApplicator(compiler.animatorController, compiler.generatedAvatarMask).UpdateMask();
         }
 
-        private void DoRemoveAppliedMasks(ComboGestureCompiler compiler)
+        private void DoRemoveAppliedMasks(FestraCompiler compiler)
         {
-            new CgeMaskApplicator(AsCompiler().animatorController, compiler.generatedAvatarMask).RemoveAppliedMask();
+            new FestraMaskApplicator(AsCompiler().animatorController, compiler.generatedAvatarMask).RemoveAppliedMask();
         }
 
-        private void DoRemoveAppliedMasksAndAssetContainer(ComboGestureCompiler compiler)
+        private void DoRemoveAppliedMasksAndAssetContainer(FestraCompiler compiler)
         {
-            new CgeMaskApplicator(AsCompiler().animatorController, compiler.generatedAvatarMask).RemoveAppliedMask();
+            new FestraMaskApplicator(AsCompiler().animatorController, compiler.generatedAvatarMask).RemoveAppliedMask();
             generatedAvatarMask.objectReferenceValue = null;
         }
 
-        private void CreateAvatarMaskAssetIfNecessary(ComboGestureCompiler compiler)
+        private void CreateAvatarMaskAssetIfNecessary(FestraCompiler compiler)
         {
             if (compiler.generatedAvatarMask != null) return;
 
             var folderToCreateAssetIn = ResolveFolderToCreateNeutralizedAssetsIn(compiler.folderToGenerateNeutralizedAssetsIn, compiler.animatorController);
             var mask = new AvatarMask();
-            AssetDatabase.CreateAsset(mask, folderToCreateAssetIn + "/GeneratedCGEMask__" + DateTime.Now.ToString("yyyy'-'MM'-'dd'_'HHmmss") + ".asset");
+            AssetDatabase.CreateAsset(mask, folderToCreateAssetIn + "/GeneratedFESTRAMask__" + DateTime.Now.ToString("yyyy'-'MM'-'dd'_'HHmmss") + ".asset");
             compiler.generatedAvatarMask = mask;
         }
 
@@ -304,7 +303,7 @@ namespace Hai.ComboGesture.Scripts.Editor.EditorUI
         {
             if (recommendationMode.intValue == (int) WriteDefaultsRecommendationMode.UseUnsupportedWriteDefaultsOn)
             {
-                EditorGUILayout.HelpBox(CgeLocale.CGEC_WarnWriteDefaultsChosenOff, MessageType.Warning);
+                EditorGUILayout.HelpBox(FestraLocale.FESTRAC_WarnWriteDefaultsChosenOff, MessageType.Warning);
             }
         }
 
@@ -314,7 +313,7 @@ namespace Hai.ComboGesture.Scripts.Editor.EditorUI
             {
                 EditorGUILayout.HelpBox(@"Blinking Override layer should usually be generated as it depends on all the activities of the compiler.
 
-This is not a normal usage of ComboGestureExpressions, and should not be used except in special cases." + (!advancedFoldoutIsOpen ? "\n\n(Advanced settings)" : ""), MessageType.Error);
+This is not a normal usage of FestraExpressions, and should not be used except in special cases." + (!advancedFoldoutIsOpen ? "\n\n(Advanced settings)" : ""), MessageType.Error);
             }
         }
 
@@ -329,12 +328,12 @@ This is not a normal usage of ComboGestureExpressions, and should not be used ex
                 compiler.assetContainer = actualContainer.ExposeContainerAsset();
             }
             
-            new CgeFaceTracking(compiler.faceTracking, (AnimatorController)compiler.animatorController, actualContainer).DoOverwriteFaceTrackingLayer();
+            new FestraGeneratorInternal(compiler.faceTracking, (AnimatorController)compiler.animatorController, actualContainer).DoOverwriteFaceTrackingLayer();
         }
 
-        private static CgeAssetContainer CreateContainerIfNotExists(ComboGestureCompiler compiler, string folderToCreateAssetIn, VRCAvatarDescriptor avatarDescriptor)
+        private static FestraAssetContainer CreateContainerIfNotExists(FestraCompiler compiler, string folderToCreateAssetIn, VRCAvatarDescriptor avatarDescriptor)
         {
-            return compiler.assetContainer == null ? CgeAssetContainer.CreateNew(folderToCreateAssetIn, avatarDescriptor) : CgeAssetContainer.FromExisting(compiler.assetContainer, avatarDescriptor);
+            return compiler.assetContainer == null ? FestraAssetContainer.CreateNew(folderToCreateAssetIn, avatarDescriptor) : FestraAssetContainer.FromExisting(compiler.assetContainer, avatarDescriptor);
         }
 
         private static string ResolveFolderToCreateNeutralizedAssetsIn(RuntimeAnimatorController preferredChoice, RuntimeAnimatorController defaultChoice)
@@ -346,9 +345,9 @@ This is not a normal usage of ComboGestureExpressions, and should not be used ex
             return folder;
         }
 
-        private ComboGestureCompiler AsCompiler()
+        private FestraCompiler AsCompiler()
         {
-            return (ComboGestureCompiler) target;
+            return (FestraCompiler) target;
         }
     }
 }

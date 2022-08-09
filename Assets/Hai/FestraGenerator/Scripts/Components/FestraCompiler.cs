@@ -3,7 +3,7 @@ using VRC.SDK3.Avatars.Components;
 
 namespace Hai.FestraGenerator.Scripts.Components
 {
-    public class ComboGestureCompiler : MonoBehaviour
+    public class FestraCompiler : MonoBehaviour
     {
         public RuntimeAnimatorController animatorController;
         public bool useGesturePlayableLayer;
@@ -37,7 +37,7 @@ namespace Hai.FestraGenerator.Scripts.Components
         public string mmdCompatibilityToggleParameter;
         public int totalNumberOfGenerations;
 
-        public ComboGestureFaceTracking faceTracking;
+        public FestraAvatar faceTracking;
     }
 
     [System.Serializable]

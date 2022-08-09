@@ -1,43 +1,43 @@
 ﻿using System;
-using Hai.FestraGenerator.Scripts.Editor.Internal.CgeAac;
+using Hai.FestraGenerator.Scripts.Editor.Internal.FestraAac;
 using UnityEditor;
 using UnityEditor.Animations;
 using UnityEngine;
 using VRC.SDK3.Avatars.Components;
 
-namespace Hai.ComboGesture.Scripts.Editor.Internal
+namespace Hai.FestraGenerator.Scripts.Editor.Internal
 {
-    internal class CgeAssetContainer
+    internal class FestraAssetContainer
     {
         private readonly AnimatorController _holder;
-        private readonly CgeAacFlBase _aac;
+        private readonly FestraAacFlBase _aac;
 
-        private CgeAssetContainer(AnimatorController holder, VRCAvatarDescriptor avatarDescriptor)
+        private FestraAssetContainer(AnimatorController holder, VRCAvatarDescriptor avatarDescriptor)
         {
             _holder = holder;
 
             var root = avatarDescriptor != null ? avatarDescriptor.transform : null;
-            _aac = CgeAacV0.Create(new CgeAacConfiguration
+            _aac = FestraAacV0.Create(new FestraAacConfiguration
             {
                 AnimatorRoot = root,
                 AssetContainer = _holder,
-                AssetKey = "GeneratedCGE",
+                AssetKey = "GeneratedFESTRA",
                 AvatarDescriptor = avatarDescriptor,
-                DefaultsProvider = new CgeDefaultsProvider(true),
-                SystemName = "CGE",
+                DefaultsProvider = new FestraDefaultsProvider(true),
+                SystemName = "FESTRA",
                 DefaultValueRoot = root
             });
         }
 
-        public static CgeAssetContainer CreateNew(string folderToCreateAssetIn, VRCAvatarDescriptor avatarDescriptor)
+        public static FestraAssetContainer CreateNew(string folderToCreateAssetIn, VRCAvatarDescriptor avatarDescriptor)
         {
             var holder = new AnimatorController();
-            var container = new CgeAssetContainer(holder, avatarDescriptor);
-            AssetDatabase.CreateAsset(holder, folderToCreateAssetIn + "/GeneratedCGE__" + DateTime.Now.ToString("yyyy'-'MM'-'dd'_'HHmmss") + ".asset");
+            var container = new FestraAssetContainer(holder, avatarDescriptor);
+            AssetDatabase.CreateAsset(holder, folderToCreateAssetIn + "/GeneratedFESTRA__" + DateTime.Now.ToString("yyyy'-'MM'-'dd'_'HHmmss") + ".asset");
             return container;
         }
 
-        public static CgeAssetContainer FromExisting(RuntimeAnimatorController existingContainer, VRCAvatarDescriptor avatarDescriptor)
+        public static FestraAssetContainer FromExisting(RuntimeAnimatorController existingContainer, VRCAvatarDescriptor avatarDescriptor)
         {
             var assetContainer = (AnimatorController) existingContainer;
             if (assetContainer == null)
@@ -53,22 +53,22 @@ namespace Hai.ComboGesture.Scripts.Editor.Internal
                 throw new ArgumentException("The asset container must already be an asset");
             }
 
-            return new CgeAssetContainer(assetContainer, avatarDescriptor);
+            return new FestraAssetContainer(assetContainer, avatarDescriptor);
         }
 
         public void AddAnimation(AnimationClip animation)
         {
-            _aac.CGE_StoringMotion(animation);
+            _aac.FESTRA_StoringMotion(animation);
         }
 
         public void AddBlendTree(BlendTree blendTree)
         {
-            _aac.CGE_StoringMotion(blendTree);
+            _aac.FESTRA_StoringMotion(blendTree);
         }
 
         public void AddAvatarMask(AvatarMask mask)
         {
-            _aac.CGE_StoringAsset(mask);
+            _aac.FESTRA_StoringAsset(mask);
         }
 
         public RuntimeAnimatorController ExposeContainerAsset()
@@ -82,17 +82,17 @@ namespace Hai.ComboGesture.Scripts.Editor.Internal
             AssetDatabase.Refresh();
         }
 
-        public CgeAacFlBase ExposeCgeAac()
+        public FestraAacFlBase ExposeFestraAac()
         {
             return _aac;
         }
     }
 
-    public sealed class CgeDefaultsProvider : ICgeAacDefaultsProvider
+    public sealed class FestraDefaultsProvider : IFestraAacDefaultsProvider
     {
         private readonly bool _writeDefaults;
 
-        public CgeDefaultsProvider(bool writeDefaults = false)
+        public FestraDefaultsProvider(bool writeDefaults = false)
         {
             _writeDefaults = writeDefaults;
         }

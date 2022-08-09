@@ -5,17 +5,17 @@ using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Hai.ComboGesture.Scripts.Editor.EditorUI
+namespace Hai.FestraGenerator.Scripts.Editor.EditorUI
 {
-    public class ComboGestureViewerGenerator
+    public class FestraViewerGenerator
     {
         private GameObject _animatedRoot;
         private Camera _camera;
         private Material _shader;
 
-        public ComboGestureViewerGenerator()
+        public FestraViewerGenerator()
         {
-            _shader = new Material(Shader.Find("Hai/HaiCgeGrayscale"));
+            _shader = new Material(Shader.Find("Hai/HaiFestraGrayscale"));
         }
 
         public void Begin(GameObject animatedRoot)
@@ -146,7 +146,7 @@ namespace Hai.ComboGesture.Scripts.Editor.EditorUI
 
         private void Render(GameObject copy)
         {
-            var viewer = new ComboGestureViewerGenerator();
+            var viewer = new FestraViewerGenerator();
             try
             {
                 viewer.Begin(copy);

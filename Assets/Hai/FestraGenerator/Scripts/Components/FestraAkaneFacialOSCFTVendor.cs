@@ -2,14 +2,14 @@ using System.Collections.Generic;
 
 namespace Hai.FestraGenerator.Scripts.Components
 {
-    public class ComboGestureAkaneFacialOSCFTVendor : ComboGestureFTVendor
+    public class FestraAkaneFacialOSCFTVendor : FestraFTVendor
     {
         // AkaneFacialOSC Vendor
         // https://github.com/azwjp/AkaneFacialOSC/releases
         // https://azw.booth.pm/items/3686598
         // https://github.com/azwjp/AkaneFacialOSC/blob/v2.1.0/AkaneFacialOSC/Document/HowToUse_ja.md
         
-        public CgeVendorGroup GROUP_目の周りのデータ__SDKの計算方法と同様に計算した値 = CgeVendorGroup.Some;
+        public FestraVendorGroup GROUP_目の周りのデータ__SDKの計算方法と同様に計算した値 = FestraVendorGroup.Some;
         public bool Eye_Left_Blink; //	0	自然な状態	左目を閉じる	左目のまばたき
         public bool Eye_Left_Wide; //	0	自然な状態	眉が上がって左目を大きく開ける	目を大きく見開いた状態．eye_wide の値．
         public bool Eye_Left_Right; //	0	自然な状態	右を見ようとして左目の右側に力を入れる	瞳孔の位置が中央より右にあるときに送信される
@@ -29,7 +29,7 @@ namespace Hai.FestraGenerator.Scripts.Components
         
         //
         
-        public CgeVendorGroup GROUP_視線__アプリ内で計算された値 = CgeVendorGroup.Some;
+        public FestraVendorGroup GROUP_視線__アプリ内で計算された値 = FestraVendorGroup.Some;
         public bool Gaze_Left_Vertical; //	0.5 (0)	左目が下を向く	左目が上を向く	範囲を [0, 1] と [-1, 1] の間で変更可能
         public bool Gaze_Left_Horizontal; //	0.5 (0)	左目が左を向く	左目が右を向く	範囲を [0, 1] と [-1, 1] の間で変更可能
         public bool Gaze_Right_Vertical; //	0.5 (0)	右目が下を向く	右目が上を向く	範囲を [0, 1] と [-1, 1] の間で変更可能
@@ -39,7 +39,7 @@ namespace Hai.FestraGenerator.Scripts.Components
         
         //
         
-        public CgeVendorGroup GROUP_目__計算処理済みの値 = CgeVendorGroup.Some;
+        public FestraVendorGroup GROUP_目__計算処理済みの値 = FestraVendorGroup.Some;
         public bool Eye_Blink; //	0	自然な状態	両目を閉じる	Eye_Left_Blink と Eye_Right_Blink の平均
         public bool Eye_Wide; //	0	自然な状態	眉が上がって両目を大きく開ける	Eye_Left_Wide と Eye_Right_Wide の平均
         public bool Eye_Right; //	0	自然な状態	右を見ようとして両目の右側に力を入れる	Eye_Left_Right と Eye_Right_Right の平均
@@ -51,7 +51,7 @@ namespace Hai.FestraGenerator.Scripts.Components
         
         //
         
-        public CgeVendorGroup GROUP_顔__トラッカで取得した生の値 = CgeVendorGroup.Some;
+        public FestraVendorGroup GROUP_顔__トラッカで取得した生の値 = FestraVendorGroup.Some;
         public bool Jaw_Right; //	0	自然な状態	顎を右に動かす	Jaw_Left と同時に 1 に設定した場合は元の状態に戻る
         public bool Jaw_Left; //	0	自然な状態	顎を左に動かす	Jaw_Right と同時に 1 に設定した場合は元の状態に戻る
         public bool Jaw_Forward; //	0	自然な状態	顎を前に突き出す	
@@ -92,7 +92,7 @@ namespace Hai.FestraGenerator.Scripts.Components
         
         //
         
-        public CgeVendorGroup GROUP_顔__アプリ内で計算_統合したデータ = CgeVendorGroup.Some;
+        public FestraVendorGroup GROUP_顔__アプリ内で計算_統合したデータ = FestraVendorGroup.Some;
         public bool Jaw_Left_Right; //	0.5 (0)	顎を左に動かす	顎を右に動かす	Jaw_Left と Jaw_Right から計算
         public bool Mouth_Sad_Smile_Right; //	0.5 (0)	口を閉じたまま右側の口角を上げる	口を閉じたまま右側の口角を上げる	Mouth_Sad_Right と Mouth_Smile_Right から計算
         public bool Mouth_Sad_Smile_Left; //	0.5 (0)	口を閉じたまま左側の口角を上げる	口を閉じたまま左側の口角を上げる	Mouth_Sad_Left と Mouth_Smile_Left から計算
@@ -111,7 +111,7 @@ namespace Hai.FestraGenerator.Scripts.Components
         public bool Tongue_Left_Right; //	0.5 (0)	舌を左に動かす	舌を右に動かす	Tongue_Left　と Tongue_Right から計算
         public bool Tongue_Down_Up; //	0.5 (0)	舌の先端を下に動かす	舌の先端を上に動かす	Tongue_Down　と Tongue_Up から計算
 
-        public override Dictionary<string, CgeElementActuator[]> ExposeMap()
+        public override Dictionary<string, FestraElementActuator[]> ExposeMap()
         {
             throw new System.NotImplementedException();
         }

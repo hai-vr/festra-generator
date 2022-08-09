@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEditor.Animations;
 using UnityEngine;
 
-namespace Hai.ComboGesture.Scripts.Editor.Internal
+namespace Hai.FestraGenerator.Scripts.Editor.Internal
 {
-    internal static class CgeSharedLayerUtils
+    internal static class FestraSharedLayerUtils
     {
         public static IEnumerable<Motion> FindAllReachableClipsAndBlendTrees(AnimatorController animatorController)
         {

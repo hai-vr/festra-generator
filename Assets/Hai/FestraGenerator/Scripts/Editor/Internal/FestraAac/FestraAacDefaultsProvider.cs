@@ -1,9 +1,9 @@
 ﻿using UnityEditor.Animations;
 using UnityEngine;
 
-namespace Hai.FestraGenerator.Scripts.Editor.Internal.CgeAac
+namespace Hai.FestraGenerator.Scripts.Editor.Internal.FestraAac
 {
-    public interface ICgeAacDefaultsProvider
+    public interface IFestraAacDefaultsProvider
     {
         void ConfigureState(AnimatorState state, AnimationClip emptyClip);
         void ConfigureTransition(AnimatorStateTransition transition);
@@ -13,11 +13,11 @@ namespace Hai.FestraGenerator.Scripts.Editor.Internal.CgeAac
         void ConfigureStateMachine(AnimatorStateMachine stateMachine);
     }
 
-    public class CgeAacDefaultsProvider : ICgeAacDefaultsProvider
+    public class FestraAacDefaultsProvider : IFestraAacDefaultsProvider
     {
         private readonly bool _writeDefaults;
 
-        public CgeAacDefaultsProvider(bool writeDefaults = false)
+        public FestraAacDefaultsProvider(bool writeDefaults = false)
         {
             _writeDefaults = writeDefaults;
         }
